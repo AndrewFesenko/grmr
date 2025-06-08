@@ -5,7 +5,11 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --primary: oklch(0.205 0 0);
+  --primary: #800080; /* Deep purple */
+  --primary-light: #f3e5f5;
+  --primary-dark: #4a0080;
+  --background: #fbf8ff;
+  --foreground: #3a2f45;
 
   --cta: #2c2c2c;
   --cta-gold: #fccc41;
@@ -38,7 +42,7 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-  --background: oklch(1 0 0);
+  /*--background: oklch(1 0 0);*/
   --foreground: oklch(0.145 0 0);
 }
 
@@ -127,16 +131,20 @@ body {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
   }
+
   main {
-    @apply mx-auto px-14 flex flex-col gap-8 bg-background h-full max-w-[1400px] pt-10 max-sm:px-2;
+    @apply mx-auto px-14 flex flex-col gap-8 h-full max-w-[1400px] pt-10 max-sm:px-2;
   }
+
   h1 {
     @apply text-3xl font-bold;
   }
 }
+
 
 @layer components {
   .home-section {
@@ -213,6 +221,14 @@ body {
   .transcript-fade {
     @apply pointer-events-none absolute bottom-0 left-0 right-0 h-40 max-sm:h-20 bg-gradient-to-t from-background via-background/90 to-transparent z-10;
   }
+
+  /* Card gradients */
+  .card-gradient-1 {
+    @apply bg-gradient-to-br from-purple-100 via-purple-50 to-violet-50;
+  }
+  .card-gradient-2 {
+    @apply bg-gradient-to-br from-violet-100 via-fuchsia-50 to-purple-50;
+  }
 }
 
 @layer utilities {
@@ -222,5 +238,11 @@ body {
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+  .purple-gradient {
+    @apply bg-gradient-to-br from-purple-100 via-purple-50 to-violet-50;
+  }
+  .purple-text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-800 to-violet-900;
   }
 }

@@ -1,0 +1,65 @@
+'use client'
+
+import React from 'react'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
+import { Video, Users } from 'lucide-react'
+
+const deliveryMethods = [
+    {
+        title: 'Virtual Tutoring',
+        icon: <Video className="w-10 h-10 text-white" />,
+        description:
+            'Connect with tutors online from anywhere. Flexible scheduling and interactive tools.',
+        href: '/form?type=virtual',
+        iconBg: 'bg-gradient-to-br from-purple-500 to-violet-500'
+    },
+    {
+        title: 'In-Person Tutoring',
+        icon: <Users className="w-10 h-10 text-white" />,
+        description:
+            'Face-to-face sessions at convenient locations with personalized attention.',
+        href: '/in-person-tutoring',
+        iconBg: 'bg-gradient-to-br from-violet-500 to-fuchsia-500'
+    }
+]
+
+const DeliveryMethods = () => {
+    return (
+        <section className="w-full py-20 px-4">
+            <div className="mb-8 text-center">
+                <div className="inline-flex flex-col items-center justify-center bg-white/70 backdrop-blur-sm px-8 py-4 rounded-2xl shadow-lg min-h-[90px]">
+                    <h2 className="text-4xl font-semibold text-primary">Tutoring Options</h2>
+                    <p className="text-muted-foreground text-base mt-2">
+                        Choose the learning approach that works best for you
+                    </p>
+                </div>
+            </div>
+
+            <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {deliveryMethods.map((method) => (
+                        <div
+                            key={method.title}
+                            className="bg-white rounded-xl border border-border p-8 hover:shadow-md transition-all flex flex-col items-center text-center hover:border-primary/30"
+                        >
+                            <div className={`${method.iconBg} p-4 rounded-full shadow-sm mb-4`}>
+                                {method.icon}
+                            </div>
+                            <h3 className="text-2xl font-semibold mb-3 text-primary">{method.title}</h3>
+                            <p className="text-muted-foreground mb-6">{method.description}</p>
+                            <Button
+                                className="bg-primary hover:bg-primary-dark text-white rounded-full"
+                                asChild
+                            >
+                                <Link href={method.href}>Learn More</Link>
+                            </Button>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    )
+}
+
+export default DeliveryMethods

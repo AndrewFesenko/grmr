@@ -1,34 +1,37 @@
 'use client';
 
 import Link from "next/link";
-import {usePathname} from "next/navigation";
-import {cn} from "@/lib/utils";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 const navItems = [
-    { label:'Home', href: '/' },
+    { label: 'Home', href: '/' },
     { label: 'Feedback Form', href: '/form' },
-    { label: 'Lessons', href: 'my-journey' },
-    { label:'Resources', href: '/resources' },
+    { label: 'Lessons', href: '/my-journey' },
+    { label: 'Resources', href: '/resources' },
     { label: 'Photos', href: '/photos' },
     { label: 'FAQ', href: '/faq' },
-]
+];
 
-const NavItems = () => {
+const NavItems = ({ mobile = false }: { mobile?: boolean }) => {
     const pathname = usePathname();
 
     return (
-        <nav className="flex items-center gap-4">
+        <nav className={cn("text-primary", mobile ? "flex flex-col gap-4 pt-4" : "flex items-center gap-4")}>
             {navItems.map(({ label, href }) => (
                 <Link
                     href={href}
                     key={label}
-                    className={cn(pathname === href && 'text-primary font-semibold')}
+                    className={cn(
+                        "text-base hover:underline",
+                        pathname === href && "text-primary font-semibold"
+                    )}
                 >
                     {label}
                 </Link>
             ))}
         </nav>
-    )
-}
+    );
+};
 
-export default NavItems
+export default NavItems;
