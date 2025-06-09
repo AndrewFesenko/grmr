@@ -32,7 +32,7 @@ const HeroSection = () => {
                     >
                         <Link href="/my-journey" className="flex items-center gap-2">
                             <Book className="h-5 w-5" />
-                            Browse Lessons
+                            Become a Student
                         </Link>
                     </Button>
                     <Button

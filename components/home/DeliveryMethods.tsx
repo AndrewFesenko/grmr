@@ -10,7 +10,7 @@ const deliveryMethods = [
         title: 'Virtual Tutoring',
         icon: <Video className="w-10 h-10 text-white" />,
         description:
-            'Connect with tutors online from anywhere. Flexible scheduling and interactive tools.',
+            ' Our virtual tutoring program offers free, one-on-one academic support to K–12 and adult learners through weekly sessions. Tutors provide personalized guidance tailored to each student’s needs, helping them build confidence and succeed in school.',
         href: '/form?type=virtual',
         iconBg: 'bg-gradient-to-br from-purple-500 to-violet-500'
     },
@@ -18,7 +18,7 @@ const deliveryMethods = [
         title: 'In-Person Tutoring',
         icon: <Users className="w-10 h-10 text-white" />,
         description:
-            'Face-to-face sessions at convenient locations with personalized attention.',
+            'Our monthly events in Jacksonville bring together 50+ students for engaging, group-based learning led by our volunteers. Each event features interactive lessons, collaborative activities, and a welcoming space where students can learn and grow together.',
         href: '/in-person-tutoring',
         iconBg: 'bg-gradient-to-br from-violet-500 to-fuchsia-500'
     }
@@ -29,7 +29,7 @@ const DeliveryMethods = () => {
         <section className="w-full py-20 px-4">
             <div className="mb-8 text-center">
                 <div className="inline-flex flex-col items-center justify-center bg-white/70 backdrop-blur-sm px-8 py-4 rounded-2xl shadow-lg min-h-[90px]">
-                    <h2 className="text-4xl font-semibold text-primary">Tutoring Options</h2>
+                    <h2 className="text-4xl font-semibold text-primary">Tutoring Services</h2>
                     <p className="text-muted-foreground text-base mt-2">
                         Choose the learning approach that works best for you
                     </p>

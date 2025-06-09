@@ -8,27 +8,27 @@ const tools = [
   {
     title: 'Diagnostic Tests',
     icon: <ClipboardCheck className="w-8 h-8" />,
-    description: 'Evaluate your skill level and identify areas for improvement.',
+    description: 'Quickly assess skill levels and target areas for growth.',
     href: '/resources/diagnostic-tests'
-  },
-  {
-    title: 'Accessibility Tips',
-    icon: <Accessibility className="w-8 h-8" />,
-    description: 'Resources for students of all abilities.',
-    href: '/resources/accessibility'
-  },
-  {
-    title: 'Lesson Templates',
-    icon: <FileText className="w-8 h-8" />,
-    description: 'Frameworks to guide your learning journey.',
-    href: '/resources/templates'
   },
   {
     title: 'TutorCruncher',
     icon: <Settings className="w-8 h-8" />,
-    description: 'Platform for managing tutoring sessions.',
+    description: 'Streamline and manage all tutoring sessions with ease.',
     href: '/resources/tutorcruncher'
-  }
+  },
+  {
+    title: 'Accessibility Tools',
+    icon: <Accessibility className="w-8 h-8" />,
+    description: 'Support tools for learners of all abilities.',
+    href: '/resources/accessibility'
+  },
+  {
+    title: 'Extra Resources',
+    icon: <FileText className="w-8 h-8" />,
+    description: 'Curated tools to enrich and extend learning.',
+    href: '/resources/templates'
+  },
 ]
 
 const ToolsSection = () => {
@@ -36,7 +36,7 @@ const ToolsSection = () => {
       <section className="w-full py-20 px-4">
         <div className="mb-8 text-center">
           <div className="inline-flex flex-col items-center justify-center bg-white/70 backdrop-blur-sm px-8 py-4 rounded-2xl shadow-lg min-h-[90px]">
-            <h2 className="text-4xl font-semibold text-primary">Learning Tools</h2>
+            <h2 className="text-4xl font-semibold text-primary">Academic Resources</h2>
             <p className="text-muted-foreground text-base mt-2">
               Resources to enhance your educational experience
             </p>

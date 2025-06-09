@@ -8,9 +8,9 @@ const CTASection = () => {
   return (
       <section className="w-full py-12">
         <div className="rounded-4xl bg-primary text-white p-8 md:p-12 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to get started? Join GRMR Tutoring today!</h2>
+          <h2 className="text-4xl md:text-4xl font-bold mb-4">Ready to get involved? Join GRMR today!</h2>
           <p className="text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-            Take the next step in your educational journey with personalized support from our community.
+            Take the next step in your educational journey with support from our community.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mb-8">
             <Button
@@ -26,7 +26,7 @@ const CTASection = () => {
                 className="bg-white/20 text-white border border-white/40 hover:bg-white/30"
                 asChild
             >
-              <Link href="/my-journey">Find a Lesson</Link>
+              <Link href="/my-journey">Sign Up as a Student</Link>
             </Button>
           </div>
 

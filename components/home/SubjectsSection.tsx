@@ -8,35 +8,35 @@ const subjects = [
     {
         title: 'English',
         icon: <BookOpen className="w-8 h-8" />,
-        description: 'Master language arts and literature',
+        // description: 'Master language arts and literature',
         count: 14,
         href: '/my-journey?subject=english'
     },
     {
         title: 'Math',
         icon: <Calculator className="w-8 h-8" />,
-        description: 'From basics to advanced concepts',
+        // description: 'From basics to advanced concepts',
         count: 18,
         href: '/my-journey?subject=math'
     },
     {
         title: 'Science',
         icon: <FlaskConical className="w-8 h-8" />,
-        description: 'Explore scientific principles',
+        // description: 'Explore scientific principles',
         count: 12,
         href: '/my-journey?subject=science'
     },
     {
         title: 'Health',
         icon: <Heart className="w-8 h-8" />,
-        description: 'Health and medical studies',
+        // description: 'Health and medical studies',
         count: 8,
         href: '/my-journey?subject=health'
     },
     {
         title: 'Adults',
         icon: <Users className="w-8 h-8" />,
-        description: 'Lifelong learning resources',
+        // description: 'Lifelong learning resources',
         count: 10,
         href: '/my-journey?subject=adults'
     }
@@ -69,7 +69,7 @@ const SubjectsSection = () => {
                                 {subject.icon}
                             </div>
                             <h3 className="text-xl font-semibold mb-2">{subject.title}</h3>
-                            <p className="text-muted-foreground mb-6">{subject.description}</p>
+                            {/*<p className="text-muted-foreground mb-4">{subject.description}</p>*/}
                             <Link
                                 href={subject.href}
                                 className="text-primary font-medium flex items-center hover:underline"

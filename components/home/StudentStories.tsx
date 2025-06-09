@@ -56,7 +56,7 @@ const StudentStories = () => {
             <div className="mb-8 text-center">
                 <div className="inline-flex flex-col items-center justify-center bg-white/70 backdrop-blur-sm px-8 py-4 rounded-2xl shadow-lg min-h-[90px]">
                     <h2 className="text-4xl font-semibold text-primary">Student Stories</h2>
-                    <p className="text-muted-foreground text-base mt-2">Blah blah for now</p>
+                    <p className="text-muted-foreground text-base mt-2">Real experiences from students whose lives have been impacted by GRMR</p>
                 </div>
             </div>
 
