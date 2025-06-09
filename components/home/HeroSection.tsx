@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Book, UserPlus } from "lucide-react"
@@ -10,6 +11,13 @@ const HeroSection = () => {
             <FinisherHeader />
 
             <div className="relative z-10 max-w-4xl mx-auto bg-white/80 backdrop-blur-sm shadow-2xl rounded-3xl px-8 py-16 text-center border border-primary/10">
+                <Image
+                    src="/images/GRMR.png"
+                    alt="GRMR Logo"
+                    width={200}
+                    height={200}
+                    className="mx-auto mb-6"
+                />
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
                     Empowering Learning Through Personalized Mentorship
                 </h1>

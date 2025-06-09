@@ -12,7 +12,10 @@ const bricolage = Bricolage_Grotesque({
 
 export const metadata: Metadata = {
     title: "GRMR",
-    description: "Free academic support tailored to K–12 and adult learners."
+    description: "Free academic support tailored to K–12 and adult learners.",
+    icons: {
+        icon: "public/favicon.ico"
+    }
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

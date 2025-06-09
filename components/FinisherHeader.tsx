@@ -9,7 +9,7 @@ const FinisherHeader = () => {
                 new (window as any).FinisherHeader({
                     count: 100,
                     size: { min: 2, max: 40, pulse: 0 },
-                    speed: { x: { min: 0, max: 0.8 }, y: { min: 0, max: 0.2 } },
+                    speed: { x: { min: 0, max: 0.4 }, y: { min: 0, max: 0.1 } },
                     colors: {
                         background: '#ede9f7',
                         particles: ['#f8c4ea', '#c4e9fb', '#fff7c2', '#d4fbe3', '#dcd5fa'],
