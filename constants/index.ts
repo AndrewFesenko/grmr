@@ -1,10 +1,10 @@
 export const navItems = [
   { label: 'Home', href: '/' },
-  { label: 'Services', href: '/services' },
+  { label: 'Tutoring', href: '/services' },
   { label: 'Lessons', href: '/my-journey' },
   { label: 'Resources', href: '/resources' },
   { label: 'Gallery', href: '/photos' },
-  { label: 'FAQ', href: '/faq' },
+  { label: 'Help', href: '/faq' },
   { label: 'Feedback Form', href: '/form' },
 ];
 

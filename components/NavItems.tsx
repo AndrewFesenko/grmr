@@ -35,8 +35,7 @@ const NavItems = ({ mobile = false }: { mobile?: boolean }) => {
                         href={href}
                         key={label}
                         className={cn(
-                            'group relative text-base font-medium text-primary transition-all duration-300',
-                            isActive && 'font-semibold'
+                            'group relative text-base font-medium text-primary transition-all duration-300', isActive
                         )}
                     >
                         {label}

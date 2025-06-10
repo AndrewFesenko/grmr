@@ -28,7 +28,7 @@ const FAQSection = () => {
                     {/* Sticky Sidebar */}
                     <aside className="lg:col-span-1 h-fit">
                         <div className="sticky top-24">
-                            <h3 className="text-2xl font-semibold mb-4 text-primary">FAQ Categories</h3>
+                            <h3 className="text-3xl font-semibold mb-4 text-primary">FAQ Categories</h3>
                             <div className="space-y-2">
                                 {faqData.map((category) => (
                                     <button

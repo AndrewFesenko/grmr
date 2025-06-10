@@ -22,27 +22,27 @@ type Student = {
 const students: Student[] = [
     {
         id: 1,
-        name: 'Lebron Johnson',
+        name: 'Lebron James',
         role: 'Student',
         testimonial:
             'GRMR helped me improve my writing skills significantly. The feedback was detailed and helped me understand my mistakes.',
-        image: '/students/student1.jpg'
+        image: '/students/student01.jpg'
     },
     {
         id: 2,
-        name: 'Lebron Chen',
+        name: 'Stephen Curry',
         role: 'Student',
         testimonial:
-            "The AI-powered feedback is immediate and accurate. I've seen a dramatic improvement in my grammar since using this tool.",
-        image: '/students/student2.jpg'
+            "Before GRMR, I struggled with math, but now I feel confident solving problems on my own. The tutors were really patient and explained everything clearly.",
+        image: '/students/student02.png'
     },
     {
         id: 3,
-        name: 'Lebron D.',
+        name: 'Kobe Bryant',
         role: 'Student',
         testimonial:
-            'I love how the platform gives specific suggestions instead of just highlighting errors. This has transformed how I approach writing.',
-        image: '/students/student3.jpg'
+            "The volunteers made learning fun. I never thought science could be interesting, but they helped me see it in a whole new way.",
+        image: '/students/student03.png'
     }
 ]
 
