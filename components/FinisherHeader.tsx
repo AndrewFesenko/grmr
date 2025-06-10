@@ -1,11 +1,12 @@
 'use client'
 
 import { useEffect } from 'react'
+import Script from 'next/script'
 
 const FinisherHeader = () => {
     useEffect(() => {
-        const interval = setInterval(() => {
-            if (typeof (window as any).FinisherHeader === 'function') {
+        const init = () => {
+            if (typeof window !== 'undefined' && (window as any).FinisherHeader && document.querySelector('.finisher-header')) {
                 new (window as any).FinisherHeader({
                     count: 100,
                     size: { min: 2, max: 40, pulse: 0 },
@@ -19,17 +20,22 @@ const FinisherHeader = () => {
                     skew: -1,
                     shapes: ['c', 's', 't'],
                 })
-                clearInterval(interval)
+            } else {
+                setTimeout(init, 100)
             }
-        }, 100)
-        return () => clearInterval(interval)
+        }
+
+        init()
     }, [])
 
     return (
-        <div
-            className="finisher-header fixed top-0 left-0 w-full h-full -z-10"
-            style={{ width: '100%', height: '200vh' }}
-        />
+        <>
+            <Script src="/finisher-header.es5.min.js" strategy="afterInteractive" />
+            <div
+                className="finisher-header fixed top-0 left-0 w-full h-full -z-10"
+                style={{ width: '100%', height: '200vh' }}
+            />
+        </>
     )
 }
 

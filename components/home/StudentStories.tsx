@@ -110,14 +110,14 @@ const StudentStories = () => {
                 <div className="flex justify-center gap-5 mt-4">
                     <button
                         onClick={prevSlide}
-                        className="w-11 h-11 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-slate-100 transition"
+                        className="w-11 h-11 rounded-full bg-[#f3e8ff] text-[#86198f] shadow-md flex items-center justify-center transition-colors duration-300 hover:bg-[#86198f] hover:text-white"
                         aria-label="Previous student"
                     >
                         <ChevronLeft className="w-5 h-5" />
                     </button>
                     <button
                         onClick={nextSlide}
-                        className="w-11 h-11 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-slate-100 transition"
+                        className="w-11 h-11 rounded-full bg-[#f3e8ff] text-[#86198f] shadow-md flex items-center justify-center transition-colors duration-300 hover:bg-[#86198f] hover:text-white"
                         aria-label="Next student"
                     >
                         <ChevronRight className="w-5 h-5" />

@@ -8,7 +8,6 @@ import FinisherHeader from "@/components/FinisherHeader"
 const HeroSection = () => {
     return (
         <section className="w-full min-h-[400px] py-20 relative overflow-hidden">
-            <FinisherHeader />
 
             <div className="relative z-10 max-w-4xl mx-auto bg-white/80 backdrop-blur-sm shadow-2xl rounded-3xl px-8 py-16 text-center border border-primary/10">
                 <Image
@@ -27,25 +26,24 @@ const HeroSection = () => {
                 <div className="flex flex-wrap justify-center gap-4">
                     <Button
                         size="lg"
-                        className="bg-primary hover:bg-primary-dark text-white rounded-full px-6"
+                        className="bg-[#86198f] text-white hover:bg-[#a21caf] hover:shadow-md hover:shadow-[#86198f]/30 border-2 border-[#86198f] rounded-full px-6 py-2 font-semibold transition-all duration-300"
                         asChild
                     >
-                        <Link href="/my-journey" className="flex items-center gap-2">
+                        <Link
+                            href="/my-journey"
+                            className="flex items-center gap-2 px-6 py-2 rounded-full bg-[#86198f] text-white font-semibold text-base transition duration-300 shadow-md hover:shadow-[0_0_16px_4px_rgba(134,25,143,0.4)]"
+                        >
                             <Book className="h-5 w-5" />
                             Become a Student
                         </Link>
                     </Button>
-                    <Button
-                        size="lg"
-                        variant="outline"
-                        className="border-primary text-primary hover:bg-primary-light rounded-full px-6"
-                        asChild
+                    <Link
+                        href="/sign-in"
+                        className="flex items-center gap-2 px-6 py-2 rounded-full bg-[#f3e8ff] text-[#86198f] font-semibold text-base shadow-md transition duration-300 hover:shadow-[0_0_12px_2px_rgba(134,25,143,0.4)]"
                     >
-                        <Link href="/sign-in" className="flex items-center gap-2">
-                            <UserPlus className="h-5 w-5" />
-                            Become a Tutor
-                        </Link>
-                    </Button>
+                        <UserPlus className="h-5 w-5" />
+                        Become a Tutor
+                    </Link>
                 </div>
             </div>
         </section>

@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="en">
         <body className={`${bricolage.variable} antialiased`}>
-        <Script src="/finisher-header.es5.min.js" strategy="beforeInteractive" />
+        {/*<Script src="/finisher-header.es5.min.js" strategy="beforeInteractive" />*/}
         <Navbar />
         <LayoutWrapper>{children}</LayoutWrapper>
         </body>

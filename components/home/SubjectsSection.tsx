@@ -8,36 +8,26 @@ const subjects = [
     {
         title: 'English',
         icon: <BookOpen className="w-8 h-8" />,
-        // description: 'Master language arts and literature',
-        count: 14,
         href: '/my-journey?subject=english'
     },
     {
         title: 'Math',
         icon: <Calculator className="w-8 h-8" />,
-        // description: 'From basics to advanced concepts',
-        count: 18,
         href: '/my-journey?subject=math'
     },
     {
         title: 'Science',
         icon: <FlaskConical className="w-8 h-8" />,
-        // description: 'Explore scientific principles',
-        count: 12,
         href: '/my-journey?subject=science'
     },
     {
         title: 'Health',
         icon: <Heart className="w-8 h-8" />,
-        // description: 'Health and medical studies',
-        count: 8,
         href: '/my-journey?subject=health'
     },
     {
         title: 'Adults',
         icon: <Users className="w-8 h-8" />,
-        // description: 'Lifelong learning resources',
-        count: 10,
         href: '/my-journey?subject=adults'
     }
 ]
@@ -55,28 +45,45 @@ const SubjectsSection = () => {
                     </p>
                 </div>
             </div>
+
             <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
                 <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
                     {subjects.map((subject, i) => (
-                        <div
+                        <Link
                             key={subject.title}
-                            className="bg-white rounded-xl border border-border p-6 hover:shadow-md transition-all flex flex-col items-center text-center hover:border-primary/30"
+                            href={subject.href}
+                            className="relative group overflow-hidden rounded-xl border border-border p-6 bg-white transition-all hover:shadow-md flex flex-col items-center text-center hover:border-primary/30 cursor-pointer"
                         >
+                            {/* Color fill - always full size behind */}
                             <div
-                                className="mb-4 p-3 rounded-lg shadow-sm"
+                                className="absolute inset-0 z-0"
                                 style={{ backgroundColor: shapeColors[i % shapeColors.length] }}
-                            >
-                                {subject.icon}
+                            />
+
+                            {/* White overlay that shrinks inward on hover */}
+                            <div
+                                className="absolute w-full h-full group-hover:w-0 group-hover:h-0 transition-all duration-500 ease-in-out z-10 rounded-xl bg-white"
+                                style={{
+                                    top: '50%',
+                                    left: '50%',
+                                    transform: 'translate(-50%, -50%)'
+                                }}
+                            />
+
+                            {/* Content stays on top */}
+                            <div className="relative z-20">
+                                <div
+                                    className="mb-4 w-16 h-16 mx-auto rounded-lg shadow-sm flex items-center justify-center"
+                                    style={{ backgroundColor: shapeColors[i % shapeColors.length] }}
+                                >
+                                    {subject.icon}
+                                </div>
+                                <h3 className="text-xl font-semibold mb-2">{subject.title}</h3>
+                                <span className="text-muted-foreground font-semibold mb-6 transition-colors duration-300 group-hover:text-[#86198f]">
+                                    Browse {subject.title} Lessons
+                                </span>
                             </div>
-                            <h3 className="text-xl font-semibold mb-2">{subject.title}</h3>
-                            {/*<p className="text-muted-foreground mb-4">{subject.description}</p>*/}
-                            <Link
-                                href={subject.href}
-                                className="text-primary font-medium flex items-center hover:underline"
-                            >
-                                Browse {subject.title} Lessons
-                            </Link>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </div>

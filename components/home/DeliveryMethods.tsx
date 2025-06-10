@@ -49,7 +49,8 @@ const DeliveryMethods = () => {
                             <h3 className="text-2xl font-semibold mb-3 text-primary">{method.title}</h3>
                             <p className="text-muted-foreground mb-6">{method.description}</p>
                             <Button
-                                className="bg-primary hover:bg-primary-dark text-white rounded-full"
+                                size="lg"
+                                className="bg-[#f3e8ff] text-[#86198f] rounded-full px-6 py-2 font-semibold border border-[#d8b4fe] transition duration-300 hover:shadow-[0_0_12px_2px_rgba(216,180,254,0.6)] hover:text-white"
                                 asChild
                             >
                                 <Link href={method.href}>Learn More</Link>
