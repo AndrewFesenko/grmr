@@ -1,9 +1,15 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useGSAP } from "@gsap/react"
+
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger)
 
 type Student = {
     id: number
@@ -42,6 +48,9 @@ const students: Student[] = [
 
 const StudentStories = () => {
     const [currentIndex, setCurrentIndex] = useState(0)
+    const headerRef = useRef(null)
+    const cardRef = useRef(null)
+    const controlsRef = useRef(null)
 
     const nextSlide = () => {
         setCurrentIndex((prevIndex) => (prevIndex === students.length - 1 ? 0 : prevIndex + 1))
@@ -51,10 +60,61 @@ const StudentStories = () => {
         setCurrentIndex((prevIndex) => (prevIndex === 0 ? students.length - 1 : prevIndex - 1))
     }
 
+    useGSAP(() => {
+        gsap.fromTo(
+            headerRef.current,
+            { opacity: 0, y: 30 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 1.2,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: headerRef.current,
+                    start: "top 85%",
+                    toggleActions: "play none none none",
+                }
+            }
+        )
+
+        gsap.fromTo(
+            cardRef.current,
+            { opacity: 0, y: 50 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 1.5,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: cardRef.current,
+                    start: "top 80%",
+                    toggleActions: "play none none none",
+                }
+            }
+        )
+
+        gsap.fromTo(
+            controlsRef.current,
+            { opacity: 0, y: 20 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                delay: 0.3,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: controlsRef.current,
+                    start: "top 95%",
+                    toggleActions: "play none none none",
+                }
+            }
+        )
+    }, [])
+
     return (
         <section className="w-full py-20 px-4">
             <div className="mb-8 text-center">
-                <div className="inline-flex flex-col items-center justify-center bg-white/70 backdrop-blur-sm px-8 py-4 rounded-2xl shadow-lg min-h-[90px]">
+                <div ref={headerRef} className="inline-flex flex-col items-center justify-center bg-white/70 backdrop-blur-sm px-8 py-4 rounded-2xl shadow-lg min-h-[90px]">
                     <h2 className="text-4xl font-semibold text-primary">Student Stories</h2>
                     <p className="text-muted-foreground text-base mt-2">Real experiences from students whose lives have been impacted by GRMR</p>
                 </div>
@@ -62,7 +122,7 @@ const StudentStories = () => {
 
             <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg flex flex-col items-center gap-10">
                 {/* Testimonial Card */}
-                <div className="flex flex-col md:flex-row items-center gap-10 bg-white rounded-3xl shadow-xl overflow-hidden w-full max-w-5xl">
+                <div ref={cardRef} className="flex flex-col md:flex-row items-center gap-10 bg-white rounded-3xl shadow-xl overflow-hidden w-full max-w-5xl">
                     {/* Image */}
                     <div className="w-full md:w-2/5 h-[24rem] md:h-[32rem] relative">
                         {students.map((student, index) => (
@@ -106,37 +166,40 @@ const StudentStories = () => {
                     </div>
                 </div>
 
-                {/* Arrows */}
-                <div className="flex justify-center gap-5 mt-4">
-                    <button
-                        onClick={prevSlide}
-                        className="w-11 h-11 rounded-full bg-[#f3e8ff] text-[#86198f] shadow-md flex items-center justify-center transition-colors duration-300 hover:bg-[#86198f] hover:text-white"
-                        aria-label="Previous student"
-                    >
-                        <ChevronLeft className="w-5 h-5" />
-                    </button>
-                    <button
-                        onClick={nextSlide}
-                        className="w-11 h-11 rounded-full bg-[#f3e8ff] text-[#86198f] shadow-md flex items-center justify-center transition-colors duration-300 hover:bg-[#86198f] hover:text-white"
-                        aria-label="Next student"
-                    >
-                        <ChevronRight className="w-5 h-5" />
-                    </button>
-                </div>
-
-                {/* Dots */}
-                <div className="flex justify-center gap-2 mt-2">
-                    {students.map((_, index) => (
+                {/* Controls container */}
+                <div ref={controlsRef} className="flex flex-col items-center gap-5">
+                    {/* Arrows */}
+                    <div className="flex justify-center gap-5 mt-4">
                         <button
-                            key={index}
-                            onClick={() => setCurrentIndex(index)}
-                            className={cn(
-                                'w-3 h-3 rounded-full transition',
-                                currentIndex === index ? 'bg-primary' : 'bg-gray-300'
-                            )}
-                            aria-label={`Go to slide ${index + 1}`}
-                        />
-                    ))}
+                            onClick={prevSlide}
+                            className="w-11 h-11 rounded-full bg-[#f3e8ff] text-[#86198f] shadow-md flex items-center justify-center transition-colors duration-300 hover:bg-[#86198f] hover:text-white"
+                            aria-label="Previous student"
+                        >
+                            <ChevronLeft className="w-5 h-5" />
+                        </button>
+                        <button
+                            onClick={nextSlide}
+                            className="w-11 h-11 rounded-full bg-[#f3e8ff] text-[#86198f] shadow-md flex items-center justify-center transition-colors duration-300 hover:bg-[#86198f] hover:text-white"
+                            aria-label="Next student"
+                        >
+                            <ChevronRight className="w-5 h-5" />
+                        </button>
+                    </div>
+
+                    {/* Dots */}
+                    <div className="flex justify-center gap-2 mt-2">
+                        {students.map((_, index) => (
+                            <button
+                                key={index}
+                                onClick={() => setCurrentIndex(index)}
+                                className={cn(
+                                    'w-3 h-3 rounded-full transition',
+                                    currentIndex === index ? 'bg-primary' : 'bg-gray-300'
+                                )}
+                                aria-label={`Go to slide ${index + 1}`}
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

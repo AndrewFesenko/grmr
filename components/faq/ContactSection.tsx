@@ -1,11 +1,11 @@
-// components/faq/ContactSection.tsx
 'use client'
 
 import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Send, CheckCircle } from 'lucide-react'
-import { FaFacebookF, FaInstagram } from 'react-icons/fa';
-import { MdEmail } from 'react-icons/md';
+import { FaFacebookF, FaInstagram } from 'react-icons/fa'
+import { MdEmail } from 'react-icons/md'
+import emailjs from '@emailjs/browser'
 
 const ContactSection = () => {
     const [formState, setFormState] = useState({
@@ -27,8 +27,19 @@ const ContactSection = () => {
         e.preventDefault()
         setIsSubmitting(true)
 
-        // Simulate form submission
-        setTimeout(() => {
+        try {
+            await emailjs.send(
+                process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+                process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+                {
+                    name: formState.name,
+                    email: formState.email,
+                    subject: formState.subject,
+                    message: formState.message,
+                },
+                process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+            )
+
             setIsSubmitting(false)
             setIsSubmitted(true)
             setFormState({
@@ -38,11 +49,13 @@ const ContactSection = () => {
                 message: ''
             })
 
-            // Reset success message after 5 seconds
             setTimeout(() => {
                 setIsSubmitted(false)
             }, 5000)
-        }, 1500)
+        } catch (error) {
+            console.error('Email send error:', error)
+            setIsSubmitting(false)
+        }
     }
 
     return (
@@ -156,7 +169,6 @@ const ContactSection = () => {
 
                     <div className="mt-10 pt-8 border-t border-gray-200">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                            {/* Email */}
                             <div className="flex flex-col items-center gap-2">
                                 <a
                                     href="mailto:education@grmruf.org"
@@ -167,8 +179,6 @@ const ContactSection = () => {
                                 <h4 className="font-semibold text-primary mt-2">Email</h4>
                                 <p className="text-gray-600">education@grmruf.org</p>
                             </div>
-
-                            {/* Instagram */}
                             <div className="flex flex-col items-center gap-2">
                                 <a
                                     href="https://www.instagram.com/grmruf/"
@@ -181,8 +191,6 @@ const ContactSection = () => {
                                 <h4 className="font-semibold text-primary mt-2">Instagram</h4>
                                 <p className="text-gray-600">@grmruf</p>
                             </div>
-
-                            {/* Facebook */}
                             <div className="flex flex-col items-center gap-2">
                                 <a
                                     href="https://www.facebook.com/UFGRMR/"

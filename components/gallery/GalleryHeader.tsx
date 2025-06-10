@@ -20,7 +20,7 @@ const GalleryHeader = () => {
                 transition={{ duration: 0.5 }}
                 className="inline-flex flex-col items-center justify-center bg-white/70 backdrop-blur-sm px-8 py-4 rounded-2xl shadow-lg min-h-[90px]"
             >
-                <h1 className="text-5xl font-semibold text-primary text-center">Our Gallery</h1>
+                <h1 className="text-6xl font-semibold text-primary text-center">Our Gallery</h1>
                 <p className="text-muted-foreground text-base mt-2 text-center">
                     Capturing moments of connection, learning, and growth
                 </p>

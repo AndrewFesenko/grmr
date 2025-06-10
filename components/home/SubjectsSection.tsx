@@ -1,8 +1,14 @@
 'use client'
 
-import React from 'react'
+import React, { useRef } from 'react'
 import Link from 'next/link'
 import { BookOpen, Calculator, FlaskConical, Heart, Users } from 'lucide-react'
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useGSAP } from "@gsap/react"
+
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger)
 
 const subjects = [
     {
@@ -35,10 +41,65 @@ const subjects = [
 const shapeColors = ['#f8c4ea', '#c4e9fb', '#fff7c2', '#d4fbe3', '#dcd5fa']
 
 const SubjectsSection = () => {
+    const headerRef = useRef(null)
+    const sectionRef = useRef(null)
+    const subjectsRef = useRef(null)
+
+    useGSAP(() => {
+        gsap.fromTo(
+            headerRef.current,
+            { opacity: 0, y: 30 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 1.2,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: headerRef.current,
+                    start: "top 85%",
+                    toggleActions: "play none none none",
+                }
+            }
+        )
+
+        gsap.fromTo(
+            sectionRef.current,
+            { opacity: 0, y: 50 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 1.5,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: "top 80%",
+                    toggleActions: "play none none none",
+                }
+            }
+        )
+
+        gsap.fromTo(
+            subjectsRef.current,
+            { opacity: 0, y: 30 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: subjectsRef.current,
+                    start: "top 85%",
+                    toggleActions: "play none none none",
+                }
+            }
+        )
+    }, [])
+
     return (
         <section className="w-full py-20 px-4">
             <div className="mb-8 text-center">
-                <div className="inline-flex flex-col items-center justify-center bg-white/70 backdrop-blur-sm px-8 py-4 rounded-2xl shadow-lg min-h-[90px]">
+                <div ref={headerRef} className="inline-flex flex-col items-center justify-center bg-white/70 backdrop-blur-sm px-8 py-4 rounded-2xl shadow-lg min-h-[90px]">
                     <h2 className="text-4xl font-semibold text-primary">Explore Lessons by Subject</h2>
                     <p className="text-muted-foreground text-base mt-2">
                         Dive into subject-specific lessons designed to support every type of learner
@@ -46,8 +107,8 @@ const SubjectsSection = () => {
                 </div>
             </div>
 
-            <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
-                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            <div ref={sectionRef} className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
+                <div ref={subjectsRef} className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
                     {subjects.map((subject, i) => (
                         <Link
                             key={subject.title}

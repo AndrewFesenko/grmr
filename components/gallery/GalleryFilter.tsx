@@ -9,11 +9,8 @@ type FilterOption = {
 }
 
 const filters: FilterOption[] = [
-    { value: 'all', label: 'All Photos' },
-    { value: 'tutoring', label: 'Tutoring Sessions' },
-    { value: 'events', label: 'Events' },
-    { value: 'volunteers', label: 'Volunteers' },
-    { value: 'students', label: 'Students' }
+    { value: 'vtutoring', label: 'Virtual Tutoring' },
+    { value: 'itutoring', label: 'In-Person Tutoring' },
 ]
 
 type Props = {
@@ -31,21 +28,21 @@ const GalleryFilter = ({ activeFilter, setActiveFilter }: Props) => {
                         key={filter.value}
                         onClick={() => setActiveFilter(filter.value)}
                         className={cn(
-                            "relative px-4 py-2 rounded-full font-medium text-sm transition-colors duration-300",
+                            'relative rounded-full px-4 py-2 font-semibold text-sm overflow-hidden transition-all duration-300 group',
                             isActive
-                                ? "text-white bg-primary"
-                                : "text-gray-600 bg-white hover:bg-gray-100"
+                                ? 'bg-[#86198f] text-white border border-[#86198f]'
+                                : 'bg-[#f3e8ff] text-[#86198f] border border-[#d8b4fe]',
+                            'hover:bg-[#86198f] hover:text-white hover:shadow-[0_0_12px_2px_rgba(216,180,254,0.6)]'
                         )}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.97 }}
                     >
                         {filter.label}
 
-                        {/* Animated underline for the active filter */}
                         {isActive && (
                             <motion.span
                                 layoutId="filter-underline"
-                                className="absolute inset-0 rounded-full bg-primary"
+                                className="absolute inset-0 rounded-full bg-[#86198f]"
                                 style={{ zIndex: -1 }}
                                 transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                             />

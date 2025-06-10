@@ -31,9 +31,9 @@ const GalleryGrid = ({ onSelectImage }: Props) => {
 
     return (
         <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-6 shadow-lg mb-12">
-            <div className="text-center mb-8">
-                <h2 className="text-2xl font-semibold text-primary">Photo Collection</h2>
-                <p className="text-gray-600">Browse our memories</p>
+            <div className="text-center mb-6">
+                <h2 className="text-5xl font-semibold text-primary">Photo Collection</h2>
+                <p className="text-gray-600">A snapshot of our memories</p>
             </div>
 
             <GalleryFilter activeFilter={activeFilter} setActiveFilter={setActiveFilter} />

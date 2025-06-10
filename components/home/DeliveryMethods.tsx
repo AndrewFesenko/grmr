@@ -1,16 +1,21 @@
 'use client'
 
-import React from 'react'
+import React, { useRef } from 'react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { Video, Users } from 'lucide-react'
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useGSAP } from "@gsap/react"
+
+gsap.registerPlugin(ScrollTrigger)
 
 const deliveryMethods = [
     {
         title: 'Virtual Tutoring',
         icon: <Video className="w-10 h-10 text-white" />,
         description:
-            ' Our virtual tutoring program offers free, one-on-one academic support to K–12 and adult learners through weekly sessions. Tutors provide personalized guidance tailored to each student’s needs, helping them build confidence and succeed in school.',
+            ' Our virtual tutoring program offers free, one-on-one academic support to K–12 and adult learners through weekly sessions. Tutors provide personalized guidance tailored to each students needs, helping them build confidence and succeed in school.',
         href: '/form?type=virtual',
         iconBg: 'bg-gradient-to-br from-purple-500 to-violet-500'
     },
@@ -25,10 +30,49 @@ const deliveryMethods = [
 ]
 
 const DeliveryMethods = () => {
+    const headerRef = useRef(null)
+    const methodsRef = useRef(null)
+    const methodsContainerRef = useRef(null)
+
+    useGSAP(() => {
+        gsap.fromTo(
+            headerRef.current,
+            { opacity: 0, y: 30 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 1.2,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: headerRef.current,
+                    start: "top 85%",
+                    toggleActions: "play none none none",
+                }
+            }
+        )
+
+        gsap.fromTo(
+            methodsRef.current,
+            { opacity: 0, scale: 0.9 },
+            {
+                opacity: 1,
+                scale: 1,
+                duration: 1.2,
+                delay: 0.4,
+                ease: "back.out(1.2)",
+                scrollTrigger: {
+                    trigger: methodsRef.current,
+                    start: "top 90%",
+                    toggleActions: "play none none none",
+                },
+            }
+        )
+    }, [])
+
     return (
         <section className="w-full py-20 px-4">
             <div className="mb-8 text-center">
-                <div className="inline-flex flex-col items-center justify-center bg-white/70 backdrop-blur-sm px-8 py-4 rounded-2xl shadow-lg min-h-[90px]">
+                <div ref={headerRef} className="inline-flex flex-col items-center justify-center bg-white/70 backdrop-blur-sm px-8 py-4 rounded-2xl shadow-lg min-h-[90px]">
                     <h2 className="text-4xl font-semibold text-primary">Tutoring Services</h2>
                     <p className="text-muted-foreground text-base mt-2">
                         Choose the learning approach that works best for you
@@ -36,8 +80,8 @@ const DeliveryMethods = () => {
                 </div>
             </div>
 
-            <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div ref={methodsContainerRef} className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
+                <div ref={methodsRef} className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {deliveryMethods.map((method) => (
                         <div
                             key={method.title}
