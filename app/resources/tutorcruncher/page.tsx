@@ -21,6 +21,7 @@ const TutorCruncherPage = () => {
                     router_mode: 'history',
                     element: '#subject-filter',
                     mode: 'grid',
+                    enquiry_button_text: 'Book This Tutor'
                 });
             } else {
                 setTimeout(initSocket, 300);
