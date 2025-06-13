@@ -17,18 +17,19 @@ const TutorCruncherPage = () => {
                     mode: 'appointments',
                 });
 
-                // Subject-based tutor filter
+                // Subject-based tutor filter without location box
                 socket('f329e2bb144b832cfbfd', {
                     router_mode: 'history',
                     element: '#subject-filter',
                     mode: 'grid',
+                    location_search: false, // ✅ removes the postal code box
                 });
 
-                // Tutor grid (optional)
+                // Optional tutor grid
                 // socket('f329e2bb144b832cfbfd', {
-                //   router_mode: 'history',
-                //   element: '#tutors-grid',
-                //   mode: 'grid',
+                //     router_mode: 'history',
+                //     element: '#tutors-grid',
+                //     mode: 'grid',
                 // });
             } else {
                 setTimeout(initSocket, 300);
@@ -40,9 +41,7 @@ const TutorCruncherPage = () => {
             script.id = scriptId;
             script.src = 'https://cdn.tutorcruncher.com/socket/latest/socket.js';
             script.async = true;
-            script.onload = () => {
-                initSocket();
-            };
+            script.onload = initSocket;
             document.body.appendChild(script);
         } else {
             initSocket();
@@ -68,12 +67,12 @@ const TutorCruncherPage = () => {
             </section>
 
             {/* Optional Tutor Grid */}
-            {/*
-      <section>
-        <h2 className="text-2xl font-semibold mb-4 text-center">Meet Our Tutors</h2>
-        <div id="tutors-grid" className="min-h-[600px] rounded-lg border" />
-      </section>
-      */}
+            {/* 
+            <section>
+                <h2 className="text-2xl font-semibold mb-4 text-center">Meet Our Tutors</h2>
+                <div id="tutors-grid" className="min-h-[600px] rounded-lg border" />
+            </section>
+            */}
         </main>
     );
 };
