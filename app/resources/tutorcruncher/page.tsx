@@ -17,11 +17,12 @@ const TutorCruncherPage = () => {
                     mode: 'appointments',
                 });
 
-                // Tutor filter by label (removes address input)
+                // Subject-based tutor filter without location box
                 socket('f329e2bb144b832cfbfd', {
                     router_mode: 'history',
                     element: '#subject-filter',
-                    labels_include: ['grmr'], // Change this to the label(s) you’ve assigned your tutors
+                    mode: 'grid',
+                    location_search: false, // ✅ removes the postal code box
                 });
 
                 // Optional tutor grid
@@ -61,7 +62,7 @@ const TutorCruncherPage = () => {
 
             {/* Subject Filter */}
             <section>
-                <h2 className="text-2xl font-semibold mb-4 text-center">Find a Tutor</h2>
+                <h2 className="text-2xl font-semibold mb-4 text-center">Find a Tutor by Subject</h2>
                 <div id="subject-filter" className="min-h-[600px] rounded-lg border" />
             </section>
 
