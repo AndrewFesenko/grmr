@@ -10,13 +10,6 @@ const TutorCruncherPage = () => {
             if (typeof window !== 'undefined' && (window as any).socket) {
                 const socket = (window as any).socket;
 
-                // Load the official enquiry form widget
-                socket('f329e2bb144b832cfbfd', {
-                    router_mode: 'history',
-                    element: '#basic-enquiry',
-                    mode: 'enquiry',
-                });
-
                 // Book appointments
                 socket('f329e2bb144b832cfbfd', {
                     router_mode: 'history',
@@ -31,7 +24,7 @@ const TutorCruncherPage = () => {
                     mode: 'grid',
                 });
 
-                // Tutor grid (currently optional, just uncomment to use)
+                // Tutor grid (optional)
                 // socket('f329e2bb144b832cfbfd', {
                 //   router_mode: 'history',
                 //   element: '#tutors-grid',
@@ -62,15 +55,9 @@ const TutorCruncherPage = () => {
 
     return (
         <main className="max-w-5xl mx-auto py-12 px-4 space-y-16">
-            {/* Enquiry Form Widget */}
-            <section>
-                <h1 className="text-3xl font-bold mb-4 text-center">Request a Tutor</h1>
-                <div id="basic-enquiry" className="min-h-[600px] rounded-lg border" />
-            </section>
-
             {/* Book Appointments */}
             <section>
-                <h2 className="text-2xl font-semibold mb-4 text-center">Book a Session</h2>
+                <h2 className="text-2xl font-semibold mb-4 text-center">Book a Session With a Tutor</h2>
                 <div id="appointments" className="min-h-[600px] rounded-lg border" />
             </section>
 
