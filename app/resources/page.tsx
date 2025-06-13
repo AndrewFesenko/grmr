@@ -6,16 +6,16 @@ import { ClipboardCheck, Accessibility, FileText, Settings } from 'lucide-react'
 
 const resources = [
     {
-        title: 'Diagnostic Tests',
-        icon: <ClipboardCheck className="w-10 h-10 text-primary" />,
-        description: 'Our diagnostic tests help students and tutors quickly assess current skill levels and identify areas for growth. Use these to tailor your learning journey and track progress over time.',
-        href: '/resources/diagnostic-tests'
-    },
-    {
         title: 'TutorCruncher',
         icon: <Settings className="w-10 h-10 text-primary" />,
         description: 'TutorCruncher is our scheduling and session management platform. Book sessions, track attendance, and manage your tutoring experience all in one place.',
         href: '/resources/tutorcruncher'
+    },
+    {
+        title: 'Diagnostic Tests',
+        icon: <ClipboardCheck className="w-10 h-10 text-primary" />,
+        description: 'Our diagnostic tests help students and tutors quickly assess current skill levels and identify areas for growth. Use these to tailor your learning journey and track progress over time.',
+        href: '/resources/diagnostic-tests'
     },
     {
         title: 'Accessibility Tools',

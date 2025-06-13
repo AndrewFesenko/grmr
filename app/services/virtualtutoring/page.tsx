@@ -87,7 +87,7 @@ export default function VirtualTutoringPage() {
                         effectiveness of our online learning platform.
                     </p>
                     <Link
-                        href="/contact"
+                        href="/resources/tutorcruncher"
                         className="inline-block px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 transition"
                     >
                         Schedule a Session

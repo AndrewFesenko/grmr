@@ -57,7 +57,7 @@ const TutorCruncherPage = () => {
         <main className="max-w-5xl mx-auto py-12 px-4 space-y-16">
             <section>
                 <h2 className="text-2xl font-semibold mb-4 text-center">Find the Perfect Tutor for You</h2>
-                <p className="text-muted-foreground text-base mt-2">Browse by subject to connect with a dedicated tutor who fits your academic needs</p>
+                <p className="text-muted-foreground text-center text-base mt-2">Browse by subject to connect with a dedicated tutor who fits your academic needs</p>
                 <div id="subject-filter" className="min-h-[600px] rounded-lg border" />
             </section>
         </main>
