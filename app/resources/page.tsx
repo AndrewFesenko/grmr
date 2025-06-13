@@ -37,7 +37,7 @@ const ResourcesPage = () => (
             <div className="text-center mb-12">
                 <h1 className="text-4xl font-bold text-primary mb-2">Academic Resources</h1>
                 <p className="text-muted-foreground text-lg">
-                    Discover our core resources designed to support students and tutors at every step.
+                    Some other helpful resources designed to support students and tutors at every step.
                 </p>
             </div>
             <div className="space-y-10">
