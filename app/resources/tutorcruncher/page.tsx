@@ -10,32 +10,25 @@ const TutorCruncherPage = () => {
             if (typeof window !== 'undefined' && (window as any).socket) {
                 const socket = (window as any).socket;
 
-                // Book appointments
+                // Appointments widget
                 socket('f329e2bb144b832cfbfd', {
                     router_mode: 'history',
                     element: '#appointments',
                     mode: 'appointments',
                 });
 
-                // Subject-based tutor filter without location box
+                // Subject grid widget
                 socket('f329e2bb144b832cfbfd', {
                     router_mode: 'history',
                     element: '#subject-filter',
                     mode: 'grid',
-                    location_search: false, // ✅ removes the postal code box
                 });
-
-                // Optional tutor grid
-                // socket('f329e2bb144b832cfbfd', {
-                //     router_mode: 'history',
-                //     element: '#tutors-grid',
-                //     mode: 'grid',
-                // });
             } else {
                 setTimeout(initSocket, 300);
             }
         };
 
+        // Load socket script if not already loaded
         if (!document.getElementById(scriptId)) {
             const script = document.createElement('script');
             script.id = scriptId;
@@ -47,32 +40,42 @@ const TutorCruncherPage = () => {
             initSocket();
         }
 
+        // Inject custom style safely without breaking your app
+        const style = document.createElement('style');
+        style.innerHTML = `
+      #subject-filter select {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      #subject-filter .tc-widget-search {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    `;
+        document.head.appendChild(style);
+
         return () => {
             document.getElementById(scriptId)?.remove();
+            document.head.removeChild(style);
         };
     }, []);
 
     return (
         <main className="max-w-5xl mx-auto py-12 px-4 space-y-16">
-            {/* Book Appointments */}
             <section>
-                <h2 className="text-2xl font-semibold mb-4 text-center">Book a Session With a Tutor</h2>
+                <h2 className="text-2xl font-semibold mb-4 text-center">
+                    Book a Session With a Tutor
+                </h2>
                 <div id="appointments" className="min-h-[600px] rounded-lg border" />
             </section>
 
-            {/* Subject Filter */}
             <section>
-                <h2 className="text-2xl font-semibold mb-4 text-center">Find a Tutor by Subject</h2>
+                <h2 className="text-2xl font-semibold mb-4 text-center">
+                    Find a Tutor by Subject
+                </h2>
                 <div id="subject-filter" className="min-h-[600px] rounded-lg border" />
             </section>
-
-            {/* Optional Tutor Grid */}
-            {/* 
-            <section>
-                <h2 className="text-2xl font-semibold mb-4 text-center">Meet Our Tutors</h2>
-                <div id="tutors-grid" className="min-h-[600px] rounded-lg border" />
-            </section>
-            */}
         </main>
     );
 };
