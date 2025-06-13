@@ -14,7 +14,6 @@ const TutorCruncherPage = () => {
                 socket('f329e2bb144b832cfbfd', {
                     router_mode: 'history',
                     element: '#appointments',
-                    mode: 'appointments',
                 });
 
                 // Subject grid widget
