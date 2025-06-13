@@ -10,13 +10,19 @@ const TutorCruncherPage = () => {
             if (typeof window !== 'undefined' && (window as any).socket) {
                 const socket = (window as any).socket;
 
+                // Appointments widget
+                socket('f329e2bb144b832cfbfd', {
+                    router_mode: 'history',
+                    element: '#appointments',
+                });
+
                 // Subject grid widget
                 socket('f329e2bb144b832cfbfd', {
-                router_mode: 'history',
-                element: '#subject-filter',
-                mode: 'grid',
-                contractor_enquiry_button: 'Book This Tutor'
-            });
+                    router_mode: 'history',
+                    element: '#subject-filter',
+                    mode: 'grid',
+                    contractor_enquiry_button: 'Book This Tutor'
+                });
             } else {
                 setTimeout(initSocket, 300);
             }
@@ -59,7 +65,14 @@ const TutorCruncherPage = () => {
         <main className="max-w-5xl mx-auto py-12 px-4 space-y-16">
             <section>
                 <h2 className="text-2xl font-semibold mb-4 text-center">
-                    Find the Tutor for You
+                    Book a Session With a Tutor
+                </h2>
+                <div id="appointments" className="min-h-[600px] rounded-lg border" />
+            </section>
+
+            <section>
+                <h2 className="text-2xl font-semibold mb-4 text-center">
+                    Find a Tutor by Subject
                 </h2>
                 <div id="subject-filter" className="min-h-[600px] rounded-lg border" />
             </section>
