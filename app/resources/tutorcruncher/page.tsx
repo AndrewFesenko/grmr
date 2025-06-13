@@ -9,7 +9,7 @@ const TutorCruncherPage = () => {
         const initSocket = () => {
             if (typeof window !== 'undefined' && (window as any).socket) {
                 console.log('[TutorCruncher] Initializing socket...');
-                (window as any).socket('9c79f14df986a1ec693c', {
+                (window as any).socket('f329e2bb144b832cfbfd', {
                     router_mode: 'history',
                     element: '#book-apts',
                     mode: 'appointments'

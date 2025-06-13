@@ -145,7 +145,7 @@ const About = () => {
                         </p>
 
                         <p className="text-gray-700 leading-relaxed">
-                            Since 2017, GRMR has worked to bridge that gap. Through personalized tutoring, mentorship, and accessible, culturally responsive resources, we help students not only catch up, but thrive. Our programs support learners at every stage—whether it's mastering basic math, preparing for college, or simply building the confidence to raise a hand in class.
+                            Since 2017, GRMR has worked to bridge that gap. Through personalized tutoring, mentorship, and accessible, culturally responsive resources, we help students not only catch up, but thrive. Our programs support learners at every stage—whether it&apos;s mastering basic math, preparing for college, or simply building the confidence to raise a hand in class.
                         </p>
 
                         <p className="text-gray-700 leading-relaxed">
