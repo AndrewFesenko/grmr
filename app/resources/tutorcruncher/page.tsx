@@ -10,19 +10,19 @@ const TutorCruncherPage = () => {
             if (typeof window !== 'undefined' && (window as any).socket) {
                 const socket = (window as any).socket;
 
-                socket('9c79f14df986a1ec693c', {
+                socket('f329e2bb144b832cfbfd', {
                     router_mode: 'history',
                     element: '#appointments',
                     mode: 'appointments',
                 });
 
-                socket('9c79f14df986a1ec693c', {
+                socket('f329e2bb144b832cfbfd', {
                     router_mode: 'history',
                     element: '#tutors-grid',
                     mode: 'grid',
                 });
 
-                socket('9c79f14df986a1ec693c', {
+                socket('f329e2bb144b832cfbfd', {
                     router_mode: 'history',
                     element: '#subject-filter',
                     mode: 'grid',
@@ -70,7 +70,7 @@ const TutorCruncherPage = () => {
                                 },
                             };
 
-                            fetch('https://socket.tutorcruncher.com/9c79f14df986a1ec693c/enquiry', {
+                            fetch('https://socket.tutorcruncher.com/f329e2bb144b832cfbfd/enquiry', {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json' },
                                 body: JSON.stringify(data),
