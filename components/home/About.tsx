@@ -137,7 +137,7 @@ const About = () => {
                         <h3 className="text-4xl font-bold text-primary mb-4 text-center">Our Mission</h3>
 
                         <p className="text-gray-700 leading-relaxed">
-                            Gators for Refugee Medical Relief (GRMR) is a non-profit educational organization committed to providing free academic support to K–12 students and adult learners, with a focus on refugee communities. We believe that everyone deserves access to a quality education—regardless of where they come from or what they've been through.
+                            Gators for Refugee Medical Relief (GRMR) is a non-profit educational organization committed to providing free academic support to K–12 students and adult learners, with a focus on refugee communities. We believe that everyone deserves access to a quality education-regardless of where they come from or what they&apos;ve been through.
                         </p>
 
                         <p className="text-gray-700 leading-relaxed">
@@ -184,9 +184,8 @@ const About = () => {
                                         src={img}
                                         alt={`Slide ${index + 1}`}
                                         fill
-                                        className={`object-cover absolute inset-0 transition-opacity duration-2000 ease-in-out ${
-                                            index === currentImage ? "opacity-100 z-10" : "opacity-0 z-0"
-                                        }`}
+                                        className={`object-cover absolute inset-0 transition-opacity duration-2000 ease-in-out ${index === currentImage ? "opacity-100 z-10" : "opacity-0 z-0"
+                                            }`}
                                         sizes="(max-width: 768px) 100vw, 500px"
                                         priority={index === 0}
                                     />

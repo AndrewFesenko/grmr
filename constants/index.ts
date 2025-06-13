@@ -144,7 +144,7 @@ export const faqData = [
       },
       {
         id: 13,
-        question: "Can I donate to support GRMR's mission?",
+        question: "Can I donate to support GRMR&apos;s mission?",
         answer: [
           "Yes! We greatly appreciate donations that help us expand our services and reach more students. You can donate:",
           "- Through our website donation portal",

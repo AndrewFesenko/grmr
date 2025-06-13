@@ -7,6 +7,12 @@ import { navItems } from '@/constants';
 import { useRef, useState, useEffect } from 'react';
 import DropdownPortal from './DropdownPortal';
 
+interface NavItem {
+    label: string;
+    href: string;
+    children?: NavItem[];
+}
+
 const NavItems = ({ mobile = false }: { mobile?: boolean }) => {
     const pathname = usePathname();
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -29,13 +35,14 @@ const NavItems = ({ mobile = false }: { mobile?: boolean }) => {
         if (closeTimeout.current) clearTimeout(closeTimeout.current);
         setDropdownOpen(true);
     };
+
     const handleMouseLeave = () => {
         closeTimeout.current = setTimeout(() => setDropdownOpen(false), 120);
     };
 
     return (
         <nav className={cn('text-primary', mobile ? 'flex flex-col gap-4 pt-4' : 'flex items-center gap-4')}>
-            {navItems.map(({ label, href, children }) => {
+            {navItems.map(({ label, href, children }: NavItem) => {
                 const isActive = pathname === href;
 
                 if (label === 'Feedback Form') {
@@ -74,18 +81,13 @@ const NavItems = ({ mobile = false }: { mobile?: boolean }) => {
                             >
                                 {label}
                                 <span
-                                    className={cn(
-                                        'transition-transform duration-200',
-                                        dropdownOpen ? 'rotate-180' : ''
-                                    )}
+                                    className={cn('transition-transform duration-200', dropdownOpen ? 'rotate-180' : '')}
                                     style={{ marginLeft: '2px' }}
                                     aria-hidden="true"
                                 >
                                     ⏷
                                 </span>
-                                <span
-                                    className="absolute left-0 -bottom-0.5 h-[2px] w-full origin-left bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
-                                />
+                                <span className="absolute left-0 -bottom-0.5 h-[2px] w-full origin-left bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
                             </Link>
 
                             {dropdownOpen && (
@@ -106,7 +108,7 @@ const NavItems = ({ mobile = false }: { mobile?: boolean }) => {
                                         onMouseLeave={handleMouseLeave}
                                     >
                                         <ul className="py-2">
-                                            {children.map((child: any) => (
+                                            {children.map((child) => (
                                                 <li key={child.label}>
                                                     <Link
                                                         href={child.href}
@@ -135,12 +137,10 @@ const NavItems = ({ mobile = false }: { mobile?: boolean }) => {
                                 )}
                             >
                                 {label}
-                                <span
-                                    className="absolute left-0 -bottom-0.5 h-[2px] w-full origin-left bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
-                                />
+                                <span className="absolute left-0 -bottom-0.5 h-[2px] w-full origin-left bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
                             </Link>
                             <div className="ml-4 flex flex-col gap-1">
-                                {children.map((child: any) => (
+                                {children.map((child) => (
                                     <Link
                                         key={child.label}
                                         href={child.href}
@@ -164,9 +164,7 @@ const NavItems = ({ mobile = false }: { mobile?: boolean }) => {
                         )}
                     >
                         {label}
-                        <span
-                            className="absolute left-0 -bottom-0.5 h-[2px] w-full origin-left bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
-                        />
+                        <span className="absolute left-0 -bottom-0.5 h-[2px] w-full origin-left bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
                     </Link>
                 );
             })}
