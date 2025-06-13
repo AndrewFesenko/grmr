@@ -22,10 +22,9 @@ const TutorCruncherPage = () => {
                     router_mode: 'history',
                     element: '#subject-filter',
                     mode: 'grid',
-                    location_search: false, // ✅ removes the postal code box
+                    location_search: false,
                 });
 
-                // Optional tutor grid
                 // socket('f329e2bb144b832cfbfd', {
                 //     router_mode: 'history',
                 //     element: '#tutors-grid',
