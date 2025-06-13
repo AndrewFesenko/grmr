@@ -12,7 +12,7 @@ const TutorCruncherPage = () => {
                 (window as any).socket('f329e2bb144b832cfbfd', {
                     router_mode: 'history',
                     element: '#book-apts',
-                    mode: 'appointments'
+                    mode: 'enquiry'
                 });
             } else {
                 console.warn('[TutorCruncher] Socket not available yet, retrying...');
