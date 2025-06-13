@@ -1,64 +1,157 @@
 'use client'
 
-import React from 'react'
+import React, { useRef } from 'react'
 import Link from 'next/link'
 import { ClipboardCheck, Accessibility, FileText, Settings } from 'lucide-react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useGSAP } from '@gsap/react'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const resources = [
-    {
-        title: 'TutorCruncher',
-        icon: <Settings className="w-10 h-10 text-primary" />,
-        description: 'TutorCruncher is our scheduling and session management platform. Book sessions, track attendance, and manage your tutoring experience all in one place.',
-        href: '/resources/tutorcruncher'
-    },
-    {
-        title: 'Diagnostic Tests',
-        icon: <ClipboardCheck className="w-10 h-10 text-primary" />,
-        description: 'Our diagnostic tests help students and tutors quickly assess current skill levels and identify areas for growth. Use these to tailor your learning journey and track progress over time.',
-        href: '/resources/diagnostic-tests'
-    },
-    {
-        title: 'Accessibility Tools',
-        icon: <Accessibility className="w-10 h-10 text-primary" />,
-        description: 'We provide a suite of accessibility tools to support learners of all abilities, including text-to-speech, screen readers, and more. Our goal is to make learning inclusive for everyone.',
-        href: '/resources/accessibility'
-    },
-    {
-        title: 'Extra Resources',
-        icon: <FileText className="w-10 h-10 text-primary" />,
-        description: 'Explore additional platforms, templates, and enrichment materials to supplement your learning and tutoring experience.',
-        href: '/resources/templates'
-    },
+	{
+		title: 'TutorCruncher',
+		icon: <Settings className="w-12 h-12 text-primary" />,
+		description:
+			'TutorCruncher is our scheduling and session management platform. Book sessions, track attendance, and manage your tutoring experience all in one place.',
+		href: '/resources/tutorcruncher',
+	},
+	{
+		title: 'Diagnostic Tests',
+		icon: <ClipboardCheck className="w-12 h-12 text-primary" />,
+		description:
+			'Access our collection of diagnostic assessments to identify strengths and areas for improvement across various subjects and grade levels.',
+		href: '/resources/diagnostic-tests',
+	},
+	{
+		title: 'Accessibility Tools',
+		icon: <Accessibility className="w-12 h-12 text-primary" />,
+		description:
+			'Discover tools and resources designed to support learners with different needs, including screen readers, text-to-speech tools, and visual aids.',
+		href: '/resources/accessibility',
+	},
+	{
+		title: 'Learning Templates',
+		icon: <FileText className="w-12 h-12 text-primary" />,
+		description:
+			'Download our standardized templates for note-taking, essay planning, math problem-solving, and other academic activities.',
+		href: '/resources/templates',
+	},
 ]
 
-const ResourcesPage = () => (
-    <section className="w-full py-20 px-4">
-        <div className="max-w-4xl mx-auto bg-white/70 backdrop-blur-sm rounded-3xl p-10 shadow-lg">
-            <div className="text-center mb-12">
-                <h1 className="text-4xl font-bold text-primary mb-2">Academic Resources</h1>
-                <p className="text-muted-foreground text-lg">
-                    Some other helpful resources designed to support students and tutors at every step.
-                </p>
-            </div>
-            <div className="space-y-10">
-                {resources.map((resource) => (
-                    <div key={resource.title} className="flex flex-col md:flex-row items-start md:items-center gap-6 bg-white rounded-2xl shadow p-6">
-                        <div>{resource.icon}</div>
-                        <div className="flex-1">
-                            <h2 className="text-2xl font-semibold text-primary mb-2">{resource.title}</h2>
-                            <p className="text-muted-foreground mb-3">{resource.description}</p>
-                            <Link
-                                href={resource.href}
-                                className="inline-block text-[#86198f] font-semibold hover:underline transition"
-                            >
-                                Learn More &rarr;
-                            </Link>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-    </section>
-)
+const ResourcesPage = () => {
+	const heroRef = useRef(null)
+	const introRef = useRef(null)
+	const cardsRef = useRef(null)
+
+	useGSAP(() => {
+		gsap.fromTo(
+			heroRef.current,
+			{ opacity: 0, y: 50 },
+			{
+				opacity: 1,
+				y: 0,
+				duration: 1.5,
+				scrollTrigger: {
+					trigger: heroRef.current,
+					start: 'top 80%',
+					toggleActions: 'play none none none',
+				},
+			}
+		)
+
+		gsap.fromTo(
+			introRef.current,
+			{ opacity: 0, y: 50 },
+			{
+				opacity: 1,
+				y: 0,
+				duration: 1.5,
+				scrollTrigger: {
+					trigger: introRef.current,
+					start: 'top 80%',
+					toggleActions: 'play none none none',
+				},
+			}
+		)
+
+		gsap.fromTo(
+			cardsRef.current,
+			{ opacity: 0, y: 50 },
+			{
+				opacity: 1,
+				y: 0,
+				duration: 1.5,
+				scrollTrigger: {
+					trigger: cardsRef.current,
+					start: 'top 80%',
+					toggleActions: 'play none none none',
+				},
+			}
+		)
+	}, [])
+
+	return (
+		<div className="w-full py-20 px-4">
+			{/* Hero Section */}
+			<div
+				ref={heroRef}
+				className="max-w-6xl mx-auto mb-16 bg-white/70 backdrop-blur-sm rounded-3xl p-10 shadow-xl text-center"
+			>
+				<h1 className="text-4xl font-bold text-primary mb-4">Educational Resources</h1>
+				<p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+					Explore our collection of tools and materials designed to enhance your learning experience.
+				</p>
+			</div>
+
+			{/* Intro Section */}
+			<section
+				ref={introRef}
+				className="max-w-6xl mx-auto mb-16 bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-lg"
+			>
+				<h2 className="text-2xl font-semibold text-primary mb-4">Getting Started with GRMR Resources</h2>
+				<p className="text-muted-foreground">
+					At GRMR, we believe in providing comprehensive support for both students and tutors. Our carefully selected
+					resources are designed to facilitate personalized learning experiences and help track educational progress.
+					Explore the options below to find tools that will enhance your journey.
+				</p>
+			</section>
+
+			{/* Resource Cards */}
+			<section
+				ref={cardsRef}
+				className="max-w-6xl mx-auto bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-lg"
+			>
+				<h2 className="text-2xl font-semibold text-primary mb-6">Core Resources</h2>
+
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+					{resources.map((resource) => (
+						<div
+							key={resource.title}
+							className="bg-white rounded-2xl shadow-md p-8 hover:shadow-lg transition-all duration-300 border border-border hover:border-primary/30 flex flex-col h-full"
+						>
+							<div className="flex items-center mb-6">
+								<div className="bg-[#f3e8ff] rounded-xl p-4 mr-4">{resource.icon}</div>
+								<h3 className="text-2xl font-semibold text-primary">{resource.title}</h3>
+							</div>
+
+							<p className="text-muted-foreground mb-6 flex-grow">{resource.description}</p>
+
+							<div className="mt-auto">
+								<Link
+									href={resource.href}
+									className="inline-block px-6 py-2 bg-[#f3e8ff] text-[#86198f] rounded-full font-semibold hover:shadow-md hover:bg-[#e9d5ff] transition-all duration-300"
+								>
+									Learn More →
+								</Link>
+							</div>
+						</div>
+					))}
+				</div>
+			</section>
+		</div>
+	)
+}
 
 export default ResourcesPage

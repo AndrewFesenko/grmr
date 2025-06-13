@@ -16,7 +16,7 @@ const deliveryMethods = [
         icon: <Video className="w-10 h-10 text-white" />,
         description:
             ' Our virtual tutoring program offers free, one-on-one academic support to K–12 and adult learners through weekly sessions. Tutors provide personalized guidance tailored to each students needs, helping them build confidence and succeed in school.',
-        href: '/form?type=virtual',
+        href: '/services/virtualtutoring',
         iconBg: 'bg-gradient-to-br from-purple-500 to-violet-500'
     },
     {
@@ -24,7 +24,7 @@ const deliveryMethods = [
         icon: <Users className="w-10 h-10 text-white" />,
         description:
             'Our monthly events in Jacksonville bring together 50+ students for engaging, group-based learning led by our volunteers. Each event features interactive lessons, collaborative activities, and a welcoming space where students can learn and grow together.',
-        href: '/in-person-tutoring',
+        href: '/services/inpersontutoring',
         iconBg: 'bg-gradient-to-br from-violet-500 to-fuchsia-500'
     }
 ]

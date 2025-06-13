@@ -106,7 +106,7 @@ const HeroSection = () => {
                         asChild
                     >
                         <Link
-                            href="/my-journey"
+                            href="/become-a-student"
                             className="flex items-center gap-3 px-8 py-3 rounded-full bg-[#86198f] text-white font-semibold text-lg transition duration-300 shadow-md hover:shadow-[0_0_16px_4px_rgba(134,25,143,0.4)]"
                         >
                             <Book className="h-6 w-6" />
@@ -114,7 +114,7 @@ const HeroSection = () => {
                         </Link>
                     </Button>
                     <Link
-                        href="/sign-in"
+                        href="/become-a-tutor"
                         className="flex items-center gap-3 px-8 py-3 rounded-full bg-[#f3e8ff] text-[#86198f] font-semibold text-lg shadow-md transition duration-300 hover:shadow-[0_0_12px_2px_rgba(134,25,143,0.4)]"
                     >
                         <UserPlus className="h-6 w-6" />

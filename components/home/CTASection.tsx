@@ -84,14 +84,14 @@ const CTASection = () => {
                 className="bg-white text-primary border-white hover:bg-white/90 hover:text-primary"
                 asChild
             >
-              <Link href="/sign-in">Sign Up as a Tutor</Link>
+              <Link href="/become-a-tutor">Sign Up as a Tutor</Link>
             </Button>
             <Button
                 size="lg"
                 className="bg-white/20 text-white border border-white/40 hover:bg-white/30"
                 asChild
             >
-              <Link href="/my-journey">Sign Up as a Student</Link>
+              <Link href="/become-a-student">Sign Up as a Student</Link>
             </Button>
           </div>
 

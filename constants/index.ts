@@ -8,7 +8,17 @@ export const navItems = [
       { label: 'In-Person Tutoring', href: '/services/inpersontutoring' },
     ],
   },
-  { label: 'Lessons', href: '/my-journey' },
+  {
+    label: 'Lessons',
+    href: '/lessons',
+    children: [
+      { label: 'Mathematics', href: '/lessons/math' },
+      { label: 'English', href: '/lessons/english' },
+      { label: 'Science', href: '/lessons/science' },
+      { label: 'Health', href: '/lessons/health' },
+      { label: 'Adult Education', href: '/lessons/adults' },
+    ],
+  },
   {
     label: 'Resources',
     href: '/resources',

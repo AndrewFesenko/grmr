@@ -14,27 +14,27 @@ const subjects = [
     {
         title: 'English',
         icon: <BookOpen className="w-8 h-8" />,
-        href: '/my-journey?subject=english'
+        href: '/lessons/english'
     },
     {
         title: 'Math',
         icon: <Calculator className="w-8 h-8" />,
-        href: '/my-journey?subject=math'
+        href: '/lessons/math'
     },
     {
         title: 'Science',
         icon: <FlaskConical className="w-8 h-8" />,
-        href: '/my-journey?subject=science'
+        href: '/lessons/science'
     },
     {
         title: 'Health',
         icon: <Heart className="w-8 h-8" />,
-        href: '/my-journey?subject=health'
+        href: '/lessons/health'
     },
     {
         title: 'Adults',
         icon: <Users className="w-8 h-8" />,
-        href: '/my-journey?subject=adults'
+        href: '/lessons/adults'
     }
 ]
 

@@ -3,17 +3,19 @@ import Link from 'next/link';
 
 export default function InPersonTutoringPage() {
   return (
-    <main className="container mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold text-center text-primary mb-8">In-Person Tutoring</h1>
+    <main className="flex flex-col gap-8 py-8 px-4">
+      <div className="text-center">
+        <div className="bg-white/70 backdrop-blur-sm px-8 py-10 rounded-2xl shadow-lg max-w-5xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">In-Person Tutoring</h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Hands-on learning experiences at our GRMR locations with carpool support and more.
+          </p>
+        </div>
+      </div>
 
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <div className="relative h-80 w-full mb-8 rounded-xl overflow-hidden">
-          <Image
-            src="/gallery/inperson/event18.jpeg"
-            alt="In-person tutoring session"
-            fill
-            style={{objectFit: "cover"}}
-          />
+          <Image src="/gallery/inperson/event18.jpeg" alt="In-person tutoring session" fill style={{ objectFit: 'cover' }} />
         </div>
 
         <section className="mb-10">
