@@ -1,46 +1,128 @@
-const AccessibilityPage = () => (
-    <main className="max-w-3xl mx-auto py-12 px-4">
-        <h1 className="text-4xl font-bold text-primary mb-6">Accessibility Tools & Support</h1>
-        <p className="text-lg text-muted-foreground mb-6">
-            We believe every learner deserves access to education. Explore our curated accessibility tools and strategies to help all students thrive, regardless of ability or background.
-        </p>
+'use client'
 
-        <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-3">Recommended Tools</h2>
-            <ul className="list-disc pl-6 space-y-2">
-                <li>
-                    <strong>Screen Readers:</strong> <a href="https://www.nvaccess.org/" target="_blank" rel="noopener noreferrer" className="text-primary underline">NVDA</a> (Windows), <a href="https://www.apple.com/voiceover/info/guide/_1121.html" target="_blank" rel="noopener noreferrer" className="text-primary underline">VoiceOver</a> (Mac/iOS)
-                </li>
-                <li>
-                    <strong>Text-to-Speech:</strong> <a href="https://www.naturalreaders.com/online/" target="_blank" rel="noopener noreferrer" className="text-primary underline">NaturalReader</a>, <a href="https://chrome.google.com/webstore/detail/read-aloud-a-text-to-speec/hdhinadidafjejdhmfkjgnolgimiaplp" target="_blank" rel="noopener noreferrer" className="text-primary underline">Read Aloud (Chrome Extension)</a>
-                </li>
-                <li>
-                    <strong>Color Contrast & Font Adjusters:</strong> <a href="https://chrome.google.com/webstore/detail/color-contrast-analyzer/dagdlcijhfbmgkjokkjicnnfimlebcll" target="_blank" rel="noopener noreferrer" className="text-primary underline">Color Contrast Analyzer</a>, <a href="https://chrome.google.com/webstore/detail/open-dyslexic-font/oonbghbmdpmhbhkhacgchhfnnnmloblo" target="_blank" rel="noopener noreferrer" className="text-primary underline">OpenDyslexic Font</a>
-                </li>
-                <li>
-                    <strong>Accessible Worksheets:</strong> Download <a href="/downloads/accessible-worksheet.docx" className="text-primary underline">Word templates</a> with large fonts and clear layouts.
-                </li>
-            </ul>
-        </section>
+import React, { useRef } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useGSAP } from '@gsap/react'
 
-        <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-3">Inclusive Teaching Tips</h2>
-            <ul className="list-disc pl-6 space-y-2">
-                <li>Use simple, clear language and break instructions into steps.</li>
-                <li>Offer materials in multiple formats (audio, visual, written).</li>
-                <li>Check color contrast and avoid relying on color alone for meaning.</li>
-                <li>Allow extra time for tasks and encourage questions.</li>
-                <li>Use captions for videos and alt text for images.</li>
-            </ul>
-        </section>
+gsap.registerPlugin(ScrollTrigger)
 
-        <section>
-            <h2 className="text-2xl font-semibold mb-3">Need Help?</h2>
-            <p>
-                If you or your student needs specific accommodations, contact us at <a href="mailto:education@grmruf.org" className="text-primary underline">education@grmruf.org</a>. We’re here to support every learner!
-            </p>
-        </section>
-    </main>
-);
+const AccessibilityPage = () => {
+	const heroRef = useRef(null)
+	const toolsRef = useRef(null)
+	const tipsRef = useRef(null)
+	const helpRef = useRef(null)
 
-export default AccessibilityPage;
+	useGSAP(() => {
+		[heroRef, toolsRef, tipsRef, helpRef].forEach((ref) => {
+			gsap.fromTo(
+				ref.current,
+				{ opacity: 0, y: 50 },
+				{
+					opacity: 1,
+					y: 0,
+					duration: 1.3,
+					scrollTrigger: {
+						trigger: ref.current,
+						start: 'top 80%',
+						toggleActions: 'play none none none',
+					},
+				}
+			)
+		})
+	}, [])
+
+	return (
+		<div className="w-full py-20 px-4">
+			{/* Hero Section */}
+			<section
+				ref={heroRef}
+				className="max-w-6xl mx-auto mb-16 bg-white/70 backdrop-blur-sm rounded-3xl p-10 shadow-xl text-center"
+			>
+				<h1 className="text-4xl font-bold text-primary mb-4">Accessibility Tools & Support</h1>
+				<p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+					We believe every learner deserves access to education. Explore our curated tools and strategies to help all students thrive—regardless of ability or background.
+				</p>
+			</section>
+
+			{/* Recommended Tools */}
+			<section
+				ref={toolsRef}
+				className="max-w-6xl mx-auto mb-12 bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-lg"
+			>
+				<h2 className="text-2xl font-semibold text-primary mb-4">Recommended Tools</h2>
+				<ul className="list-disc pl-6 space-y-4 text-muted-foreground">
+					<li>
+						<strong>Screen Readers:</strong>{' '}
+						<a href="https://www.nvaccess.org/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80 transition">
+							NVDA
+						</a>{' '}
+						(Windows),{' '}
+						<a href="https://www.apple.com/voiceover/info/guide/_1121.html" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80 transition">
+							VoiceOver
+						</a>{' '}
+						(Mac/iOS)
+					</li>
+					<li>
+						<strong>Text-to-Speech:</strong>{' '}
+						<a href="https://www.naturalreaders.com/online/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80 transition">
+							NaturalReader
+						</a>,{' '}
+						<a href="https://chrome.google.com/webstore/detail/read-aloud-a-text-to-speec/hdhinadidafjejdhmfkjgnolgimiaplp" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80 transition">
+							Read Aloud (Chrome Extension)
+						</a>
+					</li>
+					<li>
+						<strong>Color Contrast & Font Adjusters:</strong>{' '}
+						<a href="https://chrome.google.com/webstore/detail/color-contrast-analyzer/dagdlcijhfbmgkjokkjicnnfimlebcll" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80 transition">
+							Color Contrast Analyzer
+						</a>,{' '}
+						<a href="https://chrome.google.com/webstore/detail/open-dyslexic-font/oonbghbmdpmhbhkhacgchhfnnnmloblo" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80 transition">
+							OpenDyslexic Font
+						</a>
+					</li>
+					<li>
+						<strong>Accessible Worksheets:</strong>{' '}
+						<a href="/downloads/accessible-worksheet.docx" className="text-primary underline hover:text-primary/80 transition">
+							Download Word Templates
+						</a>
+					</li>
+				</ul>
+			</section>
+
+			{/* Inclusive Teaching Tips */}
+			<section
+				ref={tipsRef}
+				className="max-w-6xl mx-auto mb-12 bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-lg"
+			>
+				<h2 className="text-2xl font-semibold text-primary mb-4">Inclusive Teaching Tips</h2>
+				<ul className="list-disc pl-6 space-y-3 text-muted-foreground">
+					<li>Use simple, clear language and break instructions into steps.</li>
+					<li>Offer materials in multiple formats: audio, visual, and written.</li>
+					<li>Ensure strong color contrast and avoid relying solely on color for meaning.</li>
+					<li>Allow extra time and create a safe space for questions and feedback.</li>
+					<li>Always include captions for videos and alt text for all images.</li>
+				</ul>
+			</section>
+
+			{/* Help Section */}
+			<section
+				ref={helpRef}
+				className="max-w-6xl mx-auto bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-lg text-center"
+			>
+				<h2 className="text-2xl font-semibold text-primary mb-4">Need Help?</h2>
+				<p className="text-muted-foreground mb-4">
+					If you or your student needs accommodations, we’re here to help.
+				</p>
+				<a
+					href="mailto:education@grmruf.org"
+					className="inline-block px-6 py-2 bg-primary text-white rounded-full font-semibold hover:bg-primary/90 transition-all"
+				>
+					Contact Us
+				</a>
+			</section>
+		</div>
+	)
+}
+
+export default AccessibilityPage
