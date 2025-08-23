@@ -22,12 +22,11 @@ export const navItems = [
   {
     label: 'Resources',
     href: '/resources',
-    children: [
-      { label: 'TutorCruncher', href: '/resources/tutorcruncher' },
-      { label: 'Diagnostic Tests', href: '/resources/diagnostic-tests' },
-      { label: 'Accessibility Tools', href: '/resources/accessibility' },
-      { label: 'Extra Resources', href: '/resources/templates' },
-    ],
+    // children: [
+    //   { label: 'Diagnostic Tests', href: '/resources/diagnostic-tests' },
+    //   { label: 'Accessibility Tools', href: '/resources/accessibility' },
+    //   { label: 'Extra Resources', href: '/resources/templates' },
+    // ],
   },
   { label: 'Gallery', href: '/photos' },
   { label: 'Help', href: '/faq' },

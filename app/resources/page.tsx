@@ -1,155 +1,128 @@
 'use client'
 
-import React, { useRef } from 'react'
+import React, { useMemo, useRef, useState, useEffect } from 'react'
 import Link from 'next/link'
-import { ClipboardCheck, Accessibility, FileText, Settings } from 'lucide-react'
+import { ClipboardCheck, Accessibility as IconAccessibility, FileText } from 'lucide-react'
+import dynamic from 'next/dynamic'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
+import { motion } from 'framer-motion'
+import { cn } from '@/lib/utils'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const resources = [
-	{
-		title: 'TutorCruncher',
-		icon: <Settings className="w-12 h-12 text-primary" />,
-		description:
-			'TutorCruncher is our scheduling and session management platform. Book sessions, track attendance, and manage your tutoring experience all in one place.',
-		href: '/resources/tutorcruncher',
-	},
-	{
-		title: 'Diagnostic Tests',
-		icon: <ClipboardCheck className="w-12 h-12 text-primary" />,
-		description:
-			'Access our collection of diagnostic assessments to identify strengths and areas for improvement across various subjects and grade levels.',
-		href: '/resources/diagnostic-tests',
-	},
-	{
-		title: 'Accessibility Tools',
-		icon: <Accessibility className="w-12 h-12 text-primary" />,
-		description:
-			'Discover tools and resources designed to support learners with different needs, including screen readers, text-to-speech tools, and visual aids.',
-		href: '/resources/accessibility',
-	},
-	{
-		title: 'Learning Templates',
-		icon: <FileText className="w-12 h-12 text-primary" />,
-		description:
-			'Download our standardized templates for note-taking, essay planning, math problem-solving, and other academic activities.',
-		href: '/resources/templates',
-	},
-]
+type FilterKey = '' | 'diagnostic' | 'accessibility' | 'templates'
+
+const DiagnosticPanel = dynamic(() => import('@/components/resources/DiagnosticPanel'), { ssr: false })
+const AccessibilityPanel = dynamic(() => import('@/components/resources/AccessibilityPanel'), { ssr: false })
+const TemplatesPanel = dynamic(() => import('@/components/resources/TemplatesPanel'), { ssr: false })
+
+const FILTERS = [
+	{ value: 'diagnostic', label: 'Diagnostic Tests' },
+	{ value: 'accessibility', label: 'Accessibility Tools' },
+	{ value: 'templates', label: 'Learning Templates' },
+] as const
 
 const ResourcesPage = () => {
-	const heroRef = useRef(null)
-	const introRef = useRef(null)
-	const cardsRef = useRef(null)
+	const [activeFilter, setActiveFilter] = useState<FilterKey>('')
+	const heroRef = useRef<HTMLDivElement | null>(null)
+	const filterRef = useRef<HTMLDivElement | null>(null)
+	const panelRef = useRef<HTMLDivElement | null>(null)
+	const router = useRouter()
+	const search = useSearchParams()
 
 	useGSAP(() => {
-		gsap.fromTo(
-			heroRef.current,
-			{ opacity: 0, y: 50 },
-			{
-				opacity: 1,
-				y: 0,
-				duration: 1.5,
-				scrollTrigger: {
-					trigger: heroRef.current,
-					start: 'top 80%',
-					toggleActions: 'play none none none',
-				},
-			}
-		)
-
-		gsap.fromTo(
-			introRef.current,
-			{ opacity: 0, y: 50 },
-			{
-				opacity: 1,
-				y: 0,
-				duration: 1.5,
-				scrollTrigger: {
-					trigger: introRef.current,
-					start: 'top 80%',
-					toggleActions: 'play none none none',
-				},
-			}
-		)
-
-		gsap.fromTo(
-			cardsRef.current,
-			{ opacity: 0, y: 50 },
-			{
-				opacity: 1,
-				y: 0,
-				duration: 1.5,
-				scrollTrigger: {
-					trigger: cardsRef.current,
-					start: 'top 80%',
-					toggleActions: 'play none none none',
-				},
-			}
-		)
+		const fade = (el: Element | null, y = 30) => {
+			if (!el) return
+			gsap.fromTo(
+				el,
+				{ opacity: 0, y },
+				{
+					opacity: 1,
+					y: 0,
+					duration: 1,
+					ease: 'power2.out',
+					scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
+				}
+			)
+		}
+		fade(heroRef.current, 20)
+		fade(filterRef.current)
 	}, [])
 
+	// Seed from URL (?view=diagnostic)
+	useEffect(() => {
+		const view = (search.get('view') || '') as FilterKey
+		if (view === 'diagnostic' || view === 'accessibility' || view === 'templates') {
+			setActiveFilter(view)
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
+
+	const handleFilter = (value: FilterKey) => {
+		const next = activeFilter === value ? '' : value
+		setActiveFilter(next)
+		const params = new URLSearchParams(window.location.search)
+		if (next) params.set('view', next)
+		else params.delete('view')
+		router.replace(`/resources?${params.toString()}`, { scroll: false })
+		if (next) setTimeout(() => panelRef.current?.scrollIntoView({ behavior: 'smooth' }), 0)
+	}
+
 	return (
-		<div className="w-full py-20 px-4">
-			{/* Hero Section */}
-			<div
-				ref={heroRef}
-				className="max-w-6xl mx-auto mb-16 bg-white/70 backdrop-blur-sm rounded-3xl p-10 shadow-xl text-center"
-			>
+		<div className="min-h-[100svh] w-full bg-gradient-to-b from-[#faf5ff] via-[#f3e8ff]/30 to-[#faf5ff] py-20 px-4 pb-28">
+			{/* Hero */}
+			<section ref={heroRef} className="max-w-6xl mx-auto bg-white/70 backdrop-blur-sm rounded-3xl p-10 shadow-xl text-center mb-6">
 				<h1 className="text-4xl font-bold text-primary mb-4">Educational Resources</h1>
-				<p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-					Explore our collection of tools and materials designed to enhance your learning experience.
-				</p>
-			</div>
-
-			{/* Intro Section */}
-			<section
-				ref={introRef}
-				className="max-w-6xl mx-auto mb-16 bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-lg"
-			>
-				<h2 className="text-2xl font-semibold text-primary mb-4">Getting Started with GRMR Resources</h2>
-				<p className="text-muted-foreground">
-					At GRMR, we believe in providing comprehensive support for both students and tutors. Our carefully selected
-					resources are designed to facilitate personalized learning experiences and help track educational progress.
-					Explore the options below to find tools that will enhance your journey.
+				<p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+					Explore tools and materials that support learning. Choose a category below to view details.
 				</p>
 			</section>
 
-			{/* Resource Cards */}
-			<section
-				ref={cardsRef}
-				className="max-w-6xl mx-auto bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-lg"
-			>
-				<h2 className="text-2xl font-semibold text-primary mb-6">Core Resources</h2>
-
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-					{resources.map((resource) => (
-						<div
-							key={resource.title}
-							className="bg-white rounded-2xl shadow-md p-8 hover:shadow-lg transition-all duration-300 border border-border hover:border-primary/30 flex flex-col h-full"
+			{/* Filters */}
+			<section ref={filterRef} className="max-w-6xl mx-auto mb-10 flex flex-wrap justify-center gap-4">
+				{FILTERS.map((filter) => {
+					const isActive = activeFilter === filter.value
+					return (
+						<motion.button
+							key={filter.value}
+							onClick={() => handleFilter(filter.value)}
+							className={cn(
+								'relative rounded-full px-6 py-3 font-semibold text-base overflow-hidden transition-all duration-300 group',
+								isActive
+									? 'bg-[#86198f] text-white border border-[#86198f]'
+									: 'bg-[#f3e8ff] text-[#86198f] border border-[#d8b4fe]',
+								'hover:bg-[#86198f] hover:text-white hover:shadow-[0_0_14px_3px_rgba(216,180,254,0.6)]'
+							)}
+							whileHover={{ scale: 1.07 }}
+							whileTap={{ scale: 0.96 }}
+							aria-pressed={isActive}
+							type="button"
 						>
-							<div className="flex items-center mb-6">
-								<div className="bg-[#f3e8ff] rounded-xl p-4 mr-4">{resource.icon}</div>
-								<h3 className="text-2xl font-semibold text-primary">{resource.title}</h3>
-							</div>
-
-							<p className="text-muted-foreground mb-6 flex-grow">{resource.description}</p>
-
-							<div className="mt-auto">
-								<Link
-									href={resource.href}
-									className="inline-block px-6 py-2 bg-[#f3e8ff] text-[#86198f] rounded-full font-semibold hover:shadow-md hover:bg-[#e9d5ff] transition-all duration-300"
-								>
-									Learn More →
-								</Link>
-							</div>
-						</div>
-					))}
-				</div>
+							{filter.label}
+							{isActive && (
+								<motion.span
+									layoutId="filter-underline"
+									className="absolute inset-0 rounded-full bg-[#86198f]"
+									style={{ zIndex: -1 }}
+									transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+								/>
+							)}
+						</motion.button>
+					)
+				})}
 			</section>
+
+			{/* Panel container */}
+			{activeFilter && (
+				<section ref={panelRef} className="max-w-6xl mx-auto bg-white/70 backdrop-blur-sm rounded-3xl p-0 shadow-lg">
+					{activeFilter === 'diagnostic' && <DiagnosticPanel />}
+					{activeFilter === 'accessibility' && <AccessibilityPanel />}
+					{activeFilter === 'templates' && <TemplatesPanel />}
+				</section>
+			)}
 		</div>
 	)
 }

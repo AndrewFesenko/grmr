@@ -143,7 +143,7 @@ export default function InPersonTutoringPage() {
           </div>
         </section>
 
-        <section className="mb-10">
+        {/* <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 text-primary">Photo Gallery</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             <div className="relative h-40 rounded-lg overflow-hidden">
@@ -171,9 +171,9 @@ export default function InPersonTutoringPage() {
               />
             </div>
           </div>
-        </section>
+        </section> */}
 
-        <section>
+        {/* <section>
           <h2 className="text-2xl font-bold mb-4 text-primary">Ready to Join Us?</h2>
           <p className="text-lg text-muted-foreground mb-6">
             Book your in-person tutoring session today and give your child the advantage of
@@ -185,7 +185,7 @@ export default function InPersonTutoringPage() {
           >
             Schedule a Session
           </Link>
-        </section>
+        </section> */}
       </div>
     </main>
   );

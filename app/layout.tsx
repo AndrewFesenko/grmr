@@ -20,12 +20,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en">
-        <body className={`${bricolage.variable} antialiased`}>
-        {/*<Script src="/finisher-header.es5.min.js" strategy="beforeInteractive" />*/}
-        <Navbar />
-        <LayoutWrapper>{children}</LayoutWrapper>
-        </body>
+        <html lang="en" className="h-full">
+            <body
+                className={`
+					${bricolage.variable} antialiased 
+					min-h-[100svh] 
+					bg-gradient-to-b from-[#faf5ff] via-[#f3e8ff]/30 to-[#faf5ff]
+				`}
+            >
+                {/* <Script src="/finisher-header.es5.min.js" strategy="beforeInteractive" /> */}
+                <Navbar />
+                <LayoutWrapper>{children}</LayoutWrapper>
+            </body>
         </html>
     )
 }

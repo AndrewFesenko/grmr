@@ -12,12 +12,6 @@ gsap.registerPlugin(ScrollTrigger)
 
 const tools = [
   {
-    title: 'TutorCruncher',
-    icon: <Settings className="w-8 h-8" />,
-    description: 'Streamline scheduling and manage tutoring sessions using one easy platform.',
-    href: '/resources/tutorcruncher'
-  },
-  {
     title: 'Diagnostic Tests',
     icon: <ClipboardCheck className="w-8 h-8" />,
     description: 'Quickly assess skill levels and identify growth areas with targeted questions.',
@@ -106,7 +100,7 @@ const ToolsSection = () => {
       </div>
 
       <div ref={sectionRef} className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
-        <div ref={toolsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div ref={toolsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {tools.map((tool) => (
             <Link
               key={tool.title}

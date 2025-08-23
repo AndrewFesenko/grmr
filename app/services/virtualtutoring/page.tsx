@@ -83,7 +83,7 @@ export default function VirtualTutoringPage() {
 						</ul>
 					</div>
 				</section>
-
+				{/* 
 				<section>
 					<h2 className="text-2xl font-bold mb-4 text-primary">Ready to Get Started?</h2>
 					<p className="text-lg text-muted-foreground mb-6">
@@ -96,7 +96,7 @@ export default function VirtualTutoringPage() {
 					>
 						Schedule a Session
 					</Link>
-				</section>
+				</section> */}
 			</div>
 		</main>
 	);
