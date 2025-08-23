@@ -1,8 +1,6 @@
 'use client'
 
-import React, { useMemo, useRef, useState, useEffect } from 'react'
-import Link from 'next/link'
-import { ClipboardCheck, Accessibility as IconAccessibility, FileText } from 'lucide-react'
+import React, { Suspense, useRef, useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -15,6 +13,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 type FilterKey = '' | 'diagnostic' | 'accessibility' | 'templates'
 
+// Panels from components/
 const DiagnosticPanel = dynamic(() => import('@/components/resources/DiagnosticPanel'), { ssr: false })
 const AccessibilityPanel = dynamic(() => import('@/components/resources/AccessibilityPanel'), { ssr: false })
 const TemplatesPanel = dynamic(() => import('@/components/resources/TemplatesPanel'), { ssr: false })
@@ -25,7 +24,16 @@ const FILTERS = [
 	{ value: 'templates', label: 'Learning Templates' },
 ] as const
 
-const ResourcesPage = () => {
+// Thin wrapper to satisfy Next's requirement
+export default function ResourcesPage() {
+	return (
+		<Suspense fallback={<div className="min-h-[100svh] w-full py-20 px-4">Loading…</div>}>
+			<ResourcesContent />
+		</Suspense>
+	)
+}
+
+function ResourcesContent() {
 	const [activeFilter, setActiveFilter] = useState<FilterKey>('')
 	const heroRef = useRef<HTMLDivElement | null>(null)
 	const filterRef = useRef<HTMLDivElement | null>(null)
@@ -52,7 +60,7 @@ const ResourcesPage = () => {
 		fade(filterRef.current)
 	}, [])
 
-	// Seed from URL (?view=diagnostic)
+	// Read "?view=..." on mount
 	useEffect(() => {
 		const view = (search.get('view') || '') as FilterKey
 		if (view === 'diagnostic' || view === 'accessibility' || view === 'templates') {
@@ -64,17 +72,22 @@ const ResourcesPage = () => {
 	const handleFilter = (value: FilterKey) => {
 		const next = activeFilter === value ? '' : value
 		setActiveFilter(next)
+
 		const params = new URLSearchParams(window.location.search)
 		if (next) params.set('view', next)
 		else params.delete('view')
 		router.replace(`/resources?${params.toString()}`, { scroll: false })
+
 		if (next) setTimeout(() => panelRef.current?.scrollIntoView({ behavior: 'smooth' }), 0)
 	}
 
 	return (
 		<div className="min-h-[100svh] w-full bg-gradient-to-b from-[#faf5ff] via-[#f3e8ff]/30 to-[#faf5ff] py-20 px-4 pb-28">
 			{/* Hero */}
-			<section ref={heroRef} className="max-w-6xl mx-auto bg-white/70 backdrop-blur-sm rounded-3xl p-10 shadow-xl text-center mb-6">
+			<section
+				ref={heroRef}
+				className="max-w-6xl mx-auto bg-white/70 backdrop-blur-sm rounded-3xl p-10 shadow-xl text-center mb-6"
+			>
 				<h1 className="text-4xl font-bold text-primary mb-4">Educational Resources</h1>
 				<p className="text-lg text-muted-foreground max-w-3xl mx-auto">
 					Explore tools and materials that support learning. Choose a category below to view details.
@@ -117,7 +130,10 @@ const ResourcesPage = () => {
 
 			{/* Panel container */}
 			{activeFilter && (
-				<section ref={panelRef} className="max-w-6xl mx-auto bg-white/70 backdrop-blur-sm rounded-3xl p-0 shadow-lg">
+				<section
+					ref={panelRef}
+					className="max-w-6xl mx-auto bg-white/70 backdrop-blur-sm rounded-3xl p-0 shadow-lg"
+				>
 					{activeFilter === 'diagnostic' && <DiagnosticPanel />}
 					{activeFilter === 'accessibility' && <AccessibilityPanel />}
 					{activeFilter === 'templates' && <TemplatesPanel />}
@@ -126,5 +142,3 @@ const ResourcesPage = () => {
 		</div>
 	)
 }
-
-export default ResourcesPage
