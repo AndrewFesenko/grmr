@@ -4,6 +4,7 @@ import "./globals.css"
 import Navbar from "@/components/Navbar"
 import Script from "next/script"
 import LayoutWrapper from "@/components/LayoutWrapper"
+import { Analytics } from "@vercel/analytics/next"
 
 const bricolage = Bricolage_Grotesque({
     variable: "--font-bricolage",

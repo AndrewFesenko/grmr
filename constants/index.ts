@@ -29,8 +29,9 @@ export const navItems = [
     // ],
   },
   { label: 'Gallery', href: '/photos' },
-  { label: 'Help', href: '/faq' },
   { label: 'Feedback Form', href: '/form' },
+  { label: 'Help', href: '/faq' },
+  { label: 'Our Mentors', href: '/tutors' },
 ];
 
 export const subjects = [
@@ -78,12 +79,12 @@ export const faqData = [
         question: 'What subjects do you offer help with?',
         answer: [
           'We offer tutoring in a variety of subjects including:',
-          '- English Language Arts',
-          '- Mathematics (Elementary through High School)',
+          '- Mathematics',
           '- Science',
-          '- Social Studies/History',
+          '- English Language Arts',
           '- English as a Second Language (ESL)',
-          '- Test Preparation',
+          '- Social Studies/History',
+          '- Standardized Exam Preparation (PSAT, SAT, etc.)',
         ],
       },
       {

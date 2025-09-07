@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import { navItems } from '@/constants';
 import { useRef, useState, useEffect } from 'react';
 import DropdownPortal from './DropdownPortal';
+import { ChevronDown, ChevronRight } from 'lucide-react';
 
 interface NavItem {
 	label: string;
@@ -16,6 +17,15 @@ interface NavItem {
 const NavItems = ({ mobile = false }: { mobile?: boolean }) => {
 	const pathname = usePathname();
 	const [dropdownLabel, setDropdownLabel] = useState<string | null>(null);
+	const [openMobileDropdowns, setOpenMobileDropdowns] = useState<{ [label: string]: boolean }>({});
+
+	const toggleMobileDropdown = (label: string) => {
+		setOpenMobileDropdowns((prev) => ({
+			...prev,
+			[label]: !prev[label],
+		}));
+	};
+
 	const [dropdownPos, setDropdownPos] = useState<{ left: number; top: number; width: number }>({
 		left: 0,
 		top: 0,
@@ -49,10 +59,11 @@ const NavItems = ({ mobile = false }: { mobile?: boolean }) => {
 			{navItems.map(({ label, href, children }: NavItem) => {
 				const isActive = pathname === href;
 
-				if (label === 'Feedback Form') {
+				// --- Special Button: Our Mentors ---
+				if (label === 'Our Mentors') {
 					return (
 						<Link
-							href={href}
+							href="/tutors"
 							key={label}
 							className={cn(
 								'relative rounded-full px-4 py-2 font-semibold text-sm overflow-hidden transition-all duration-300 group',
@@ -66,6 +77,7 @@ const NavItems = ({ mobile = false }: { mobile?: boolean }) => {
 					);
 				}
 
+				// --- Desktop Dropdown ---
 				if (children && !mobile) {
 					return (
 						<div
@@ -81,13 +93,10 @@ const NavItems = ({ mobile = false }: { mobile?: boolean }) => {
 									'group relative flex items-center text-base text-primary transition-all duration-300',
 									isActive ? 'font-extrabold' : 'font-medium'
 								)}
-								style={{ gap: 0 }}
 							>
 								{label}
 								<span
-									className={cn('transition-transform duration-200', dropdownLabel === label ? 'rotate-180' : '')}
-									style={{ marginLeft: '2px' }}
-									aria-hidden="true"
+									className={cn('transition-transform duration-200 ml-1', dropdownLabel === label ? 'rotate-180' : '')}
 								>
 									⏷
 								</span>
@@ -97,10 +106,7 @@ const NavItems = ({ mobile = false }: { mobile?: boolean }) => {
 							{dropdownLabel === label && (
 								<DropdownPortal>
 									<div
-										className={cn(
-											'bg-white rounded-xl shadow-lg border border-border z-[9999] transition-all duration-200',
-											'opacity-100 visible pointer-events-auto'
-										)}
+										className="bg-white rounded-xl shadow-lg border border-border z-[9999] transition-all duration-200"
 										style={{
 											position: 'absolute',
 											left: dropdownPos.left,
@@ -130,34 +136,38 @@ const NavItems = ({ mobile = false }: { mobile?: boolean }) => {
 					);
 				}
 
+				// --- Mobile Dropdown ---
 				if (children && mobile) {
+					const isOpen = openMobileDropdowns[label] || false;
 					return (
-						<div key={label} className="flex flex-col gap-1">
-							<Link
-								href={href}
+						<div key={label} className="flex flex-col">
+							<button
+								onClick={() => toggleMobileDropdown(label)}
 								className={cn(
-									'group relative text-base text-primary transition-all duration-300',
-									isActive ? 'font-extrabold' : 'font-medium'
+									'flex items-center justify-between text-base text-primary font-medium transition-all duration-300'
 								)}
 							>
 								{label}
-								<span className="absolute left-0 -bottom-0.5 h-[2px] w-full origin-left bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-							</Link>
-							<div className="ml-4 flex flex-col gap-1">
-								{children.map((child) => (
-									<Link
-										key={child.label}
-										href={child.href}
-										className="text-sm text-primary hover:text-[#86198f] py-1 transition"
-									>
-										{child.label}
-									</Link>
-								))}
-							</div>
+								{isOpen ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+							</button>
+							{isOpen && (
+								<div className="ml-4 flex flex-col gap-1 mt-2">
+									{children.map((child) => (
+										<Link
+											key={child.label}
+											href={child.href}
+											className="text-sm text-primary hover:text-[#86198f] py-1 transition"
+										>
+											{child.label}
+										</Link>
+									))}
+								</div>
+							)}
 						</div>
 					);
 				}
 
+				// --- Regular Link ---
 				return (
 					<Link
 						href={href}

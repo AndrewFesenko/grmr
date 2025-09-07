@@ -7,7 +7,7 @@ const BecomeAStudent = () => {
         <section className="w-full py-16 px-4">
             <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-lg max-w-3xl mx-auto">
                 <div className="text-center mb-8">
-                    <h1 className="text-4xl font-bold text-primary mb-2">Become a Student Form</h1>
+                    <h1 className="text-4xl font-bold text-primary mb-2">Become a Student</h1>
                     <p className="text-muted-foreground text-lg">
                         Please fill out this form if you would like to become a student through our program. We will get back to you as soon as possible.
                     </p>

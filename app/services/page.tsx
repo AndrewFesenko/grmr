@@ -1,7 +1,13 @@
-import Link from 'next/link';
-import Image from 'next/image';
+import Link from 'next/link'
+import Image from 'next/image'
 
 export default function ServicesPage() {
+	const btn =
+		'inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold ' +
+		'bg-[#86198f] text-white border-2 border-[#86198f] transition duration-300 shadow-sm ' +
+		'hover:bg-[#a21caf] hover:shadow-[0_0_6px_2px_rgba(134,25,143,0.25)] ' +
+		'focus:outline-none focus:ring-2 focus:ring-[#d8b4fe]'
+
 	return (
 		<main className="flex flex-col gap-8 py-8 px-4">
 			{/* Header Section */}
@@ -9,7 +15,7 @@ export default function ServicesPage() {
 				<div className="bg-white/70 backdrop-blur-sm px-8 py-10 rounded-2xl shadow-lg max-w-5xl mx-auto">
 					<h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">Tutoring Services</h1>
 					<p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-						GRMR offers personalized tutoring for all ages — in-person or online. Learn more about our flexible options to support every student’s journey.
+						GRMR offers personalized tutoring for all ages, in person or online. Learn more about flexible options that support every student’s journey.
 					</p>
 				</div>
 			</div>
@@ -17,7 +23,7 @@ export default function ServicesPage() {
 			{/* Service Cards */}
 			<div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
 				{/* Virtual Tutoring Card */}
-				<div className="bg-white/70 backdrop-blur-sm rounded-xl shadow-md overflow-hidden border border-border hover:shadow-lg transition-shadow">
+				<div className="bg-white/70 backdrop-blur-sm rounded-2xl shadow-md overflow-hidden border border-border hover:border-primary/30 hover:shadow-lg transition-all">
 					<div className="relative h-60 w-full">
 						<Image
 							src="/gallery/virtual/online05.png"
@@ -29,20 +35,16 @@ export default function ServicesPage() {
 					<div className="p-6">
 						<h2 className="text-2xl font-bold mb-3 text-primary">Virtual Tutoring</h2>
 						<p className="text-muted-foreground mb-6">
-							Connect with experienced tutors from anywhere. Our virtual sessions use interactive technology
-							to create an engaging learning environment that fits your schedule.
+							Connect with experienced tutors from anywhere. Interactive tools create an engaging learning environment that fits your schedule.
 						</p>
-						<Link
-							href="/services/virtualtutoring"
-							className="inline-block px-6 py-2 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition"
-						>
+						<Link href="/services/virtualtutoring" className={btn}>
 							Learn More
 						</Link>
 					</div>
 				</div>
 
 				{/* In-Person Tutoring Card */}
-				<div className="bg-white/70 backdrop-blur-sm rounded-xl shadow-md overflow-hidden border border-border hover:shadow-lg transition-shadow">
+				<div className="bg-white/70 backdrop-blur-sm rounded-2xl shadow-md overflow-hidden border border-border hover:border-primary/30 hover:shadow-lg transition-all">
 					<div className="relative h-60 w-full">
 						<Image
 							src="/gallery/inperson/event05.jpeg"
@@ -54,30 +56,14 @@ export default function ServicesPage() {
 					<div className="p-6">
 						<h2 className="text-2xl font-bold mb-3 text-primary">In-Person Tutoring</h2>
 						<p className="text-muted-foreground mb-6">
-							Face-to-face learning with our qualified tutors. Meet at our dedicated centers
-							for hands-on support and a collaborative learning environment.
+							Face to face learning with qualified tutors. Meet at our centers for hands on support and a collaborative environment.
 						</p>
-						<Link
-							href="/services/inpersontutoring"
-							className="inline-block px-6 py-2 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition"
-						>
+						<Link href="/services/inpersontutoring" className={btn}>
 							Learn More
 						</Link>
 					</div>
 				</div>
 			</div>
-
-			{/* Why GRMR Section */}
-			<section className="max-w-4xl mx-auto mt-16 px-4">
-				<h2 className="text-2xl font-bold mb-4 text-primary text-center">Why Choose GRMR Tutoring?</h2>
-				<ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-					<li>Personalized learning plans tailored to each student's needs</li>
-					<li>Qualified tutors with extensive experience in their subject areas</li>
-					<li>Flexible scheduling for busy families</li>
-					<li>Regular progress reports and feedback</li>
-					<li>Support for students of all ages and abilities</li>
-				</ul>
-			</section>
 		</main>
-	);
+	)
 }

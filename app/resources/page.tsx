@@ -60,13 +60,11 @@ function ResourcesContent() {
 		fade(filterRef.current)
 	}, [])
 
-	// Read "?view=..." on mount
 	useEffect(() => {
 		const view = (search.get('view') || '') as FilterKey
 		if (view === 'diagnostic' || view === 'accessibility' || view === 'templates') {
 			setActiveFilter(view)
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	const handleFilter = (value: FilterKey) => {

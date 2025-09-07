@@ -94,7 +94,7 @@ const HeroSection = () => {
                     className="mx-auto mb-8"
                 />
                 <h1 ref={titleRef} className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                    Empowering Learning Through Personalized Mentorship
+                    Empowering Refugees Through Personalized Mentorship
                 </h1>
                 <p ref={subtitleRef} className="text-xl md:text-2xl text-muted-foreground mb-10 max-w-3xl mx-auto">
                     Free academic support tailored to K–12 and adult learners.

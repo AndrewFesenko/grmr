@@ -1,103 +1,144 @@
-import Image from 'next/image';
-import Link from 'next/link';
+'use client'
+
+import Image from 'next/image'
+import Link from 'next/link'
+import { Book, UserPlus } from 'lucide-react'
+import { useState, useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useGSAP } from '@gsap/react'
+
+gsap.registerPlugin(ScrollTrigger)
+
+const images = [
+	'/gallery/virtual/online05.png',
+	'/gallery/virtual/online06.png',
+	'/gallery/virtual/online07.png',
+]
 
 export default function VirtualTutoringPage() {
+	const [currentImage, setCurrentImage] = useState(0)
+	const headerRef = useRef<HTMLDivElement>(null)
+	const sectionRef = useRef<HTMLDivElement>(null)
+	const leftRef = useRef<HTMLDivElement>(null)
+	const rightRef = useRef<HTMLDivElement>(null)
+	const carouselRef = useRef<HTMLDivElement>(null)
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setCurrentImage((prev) => (prev + 1) % images.length)
+		}, 4000)
+		return () => clearInterval(interval)
+	}, [])
+
+	useGSAP(() => {
+		// Fade-in all sections
+		[headerRef, sectionRef, leftRef, rightRef, carouselRef].forEach((ref) => {
+			if (ref.current) {
+				gsap.fromTo(
+					ref.current,
+					{ opacity: 0, y: 50 },
+					{
+						opacity: 1,
+						y: 0,
+						duration: 1.5,
+						ease: 'power2.out',
+						scrollTrigger: {
+							trigger: ref.current,
+							start: 'top 85%',
+							toggleActions: 'play none none none',
+						},
+					}
+				)
+			}
+		})
+	}, [])
+
 	return (
-		<main className="flex flex-col gap-8 py-8 px-4">
-			{/* Header Section */}
-			<div className="text-center">
-				<div className="bg-white/70 backdrop-blur-sm px-8 py-10 rounded-2xl shadow-lg max-w-5xl mx-auto">
-					<h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">Virtual Tutoring</h1>
-					<p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-						Experience the flexibility of personalized instruction from the comfort of your home.
-						Engaging lessons, expert tutors, and interactive tools — all online.
-					</p>
-				</div>
+		<main className="flex flex-col gap-12 py-12 px-4 items-center">
+			{/* Header */}
+			<div ref={headerRef} className="bg-white/70 backdrop-blur-sm px-8 py-10 rounded-3xl shadow-lg border border-primary/10 max-w-5xl w-full text-center">
+				<h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">
+					Virtual Tutoring
+				</h1>
+				<p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+					Experience the flexibility of personalized instruction from the comfort of your home. Engaging lessons, passionate tutors, and interactive tools — all online.
+				</p>
 			</div>
 
-			{/* Content Section */}
-			<div className="max-w-4xl mx-auto">
-				<div className="relative h-80 w-full mb-8 rounded-xl overflow-hidden">
-					<Image
-						src="/gallery/virtual/online05.png"
-						alt="Student learning through virtual tutoring"
-						fill
-						style={{ objectFit: 'cover' }}
-					/>
+			{/* Main Section */}
+			<section
+				ref={sectionRef}
+				className="bg-white/70 backdrop-blur-sm rounded-3xl shadow-lg border border-gray-100 p-8 max-w-5xl w-full flex flex-col lg:flex-row gap-8 items-start"
+			>
+				{/* Left Side*/}
+				<div ref={rightRef} className="w-full lg:w-1/2 space-y-4">
+					<h2 className="text-3xl text-center font-semibold text-primary">
+						Learning Without Limits
+					</h2>
+					<p className="text-md text-muted-foreground">
+						Through GRMR, refugee students are paired one-on-one with University of Florida tutors who work with them week after week. These are more than tutoring sessions, they are long-term mentorships built on trust, support, and consistency.
+					</p>
+					<p className="text-md text-muted-foreground">
+						Each tutor provides personalized support in subjects like math, science, and English, while also serving as a mentor who helps build confidence, develop study skills, and explore future opportunities. Our goal is not only to improve grades, but to also inspire students to see their potential.
+					</p>
+					<p className="text-md text-muted-foreground">
+						With flexible online sessions, students can learn from anywhere. Tutors use interactive tools like whiteboards, shared documents, and screen sharing to make every session engaging. All it takes is a computer or tablet with internet access to open the door to learning—and to a supportive connection that lasts all year.
+					</p>
 				</div>
 
-				<section className="mb-10">
-					<h2 className="text-2xl font-bold mb-4 text-primary">Learning Without Limits</h2>
-					<p className="text-lg text-muted-foreground mb-6">
-						Our virtual tutoring program connects students with expert tutors through secure,
-						user-friendly video platforms. Students receive the same high-quality instruction as
-						our in-person sessions, with the added convenience of learning from anywhere.
-					</p>
-					<p className="text-lg text-muted-foreground mb-6">
-						All you need is a computer or tablet with internet access. Our tutors use interactive
-						whiteboards, screen sharing, and collaborative documents to create an engaging learning experience.
-					</p>
-				</section>
-
-				<section className="mb-10">
-					<h2 className="text-2xl font-bold mb-4 text-primary">How It Works</h2>
-					<div className="grid md:grid-cols-3 gap-6 text-center">
-						{[
-							{ step: '1', title: 'Schedule', text: 'Book sessions at times that work for you through our online portal' },
-							{ step: '2', title: 'Connect', text: 'Join your session via the link sent to your email' },
-							{ step: '3', title: 'Learn', text: 'Engage with your tutor through our interactive platform' }
-						].map(({ step, title, text }) => (
-							<div key={step} className="p-4 bg-white/70 backdrop-blur-sm rounded-xl shadow-sm">
-								<div className="bg-[#f3e8ff] rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-									<span className="text-2xl font-bold text-[#86198f]">{step}</span>
-								</div>
-								<h3 className="font-semibold mb-2">{title}</h3>
-								<p className="text-muted-foreground">{text}</p>
-							</div>
-						))}
-					</div>
-				</section>
-
-				<section className="mb-10">
-					<h2 className="text-2xl font-bold mb-4 text-primary">Available Subjects</h2>
-					<div className="flex flex-wrap justify-center gap-4">
-						{['Math', 'English', 'Science', 'Health', 'Adult Education'].map((subject) => (
-							<div
-								key={subject}
-								className="bg-[#f3e8ff] p-4 rounded-lg text-center min-w-[140px] max-w-[200px] flex-1 sm:flex-none"
-							>
-								{subject}
-							</div>
-						))}
-					</div>
-				</section>
-
-				<section className="mb-10">
-					<h2 className="text-2xl font-bold mb-4 text-primary">Tech Requirements</h2>
-					<div className="bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-sm">
-						<ul className="list-disc pl-6 space-y-2">
-							<li>Computer, tablet, or smartphone with camera and microphone</li>
-							<li>Stable internet connection</li>
-							<li>Zoom or Google Meet (we'll provide the link)</li>
-							<li>Optional: headphones for better audio</li>
-						</ul>
-					</div>
-				</section>
-				{/* 
-				<section>
-					<h2 className="text-2xl font-bold mb-4 text-primary">Ready to Get Started?</h2>
-					<p className="text-lg text-muted-foreground mb-6">
-						Book your first virtual tutoring session today and experience the convenience and
-						effectiveness of our online learning platform.
-					</p>
-					<Link
-						href="/resources/tutorcruncher"
-						className="inline-block px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 transition"
+				{/* Right: Carousel */}
+				<div ref={leftRef} className="w-full lg:w-1/2 flex flex-col gap-4">
+					<div
+						ref={carouselRef}
+						className="relative rounded-3xl overflow-hidden shadow-md w-full h-72 mt-2"
 					>
-						Schedule a Session
-					</Link>
-				</section> */}
-			</div>
+						{images.map((img, index) => (
+							<Image
+								key={index}
+								src={img}
+								alt={`Virtual Tutoring ${index + 1}`}
+								fill
+								style={{ objectFit: 'cover' }}
+								className={`absolute inset-0 transition-opacity duration-2000 ease-in-out ${index === currentImage ? 'opacity-100 z-10' : 'opacity-0 z-0'
+									}`}
+							/>
+						))}
+					</div>
+
+					<div className="flex flex-wrap gap-2 mt-2 justify-center lg:justify-start">
+						<Link
+							href="/become-a-student"
+							className="group relative flex flex-col items-center justify-center bg-gradient-to-br from-purple-50 to-blue-50 px-4 py-2 rounded-2xl border border-purple-100 shadow-md hover:shadow-lg transition-all duration-300 w-56"
+						>
+							<div className="mb-2 flex items-center justify-center w-12 h-12 rounded-full bg-[#86198f]/10 group-hover:scale-110 transition-transform">
+								<Book className="h-6 w-6 text-[#86198f]" />
+							</div>
+							<h3 className="text-lg font-semibold text-primary mb-1 text-center">
+								Become a Student
+							</h3>
+							<p className="text-xs text-muted-foreground text-center">
+								Sign up and start your learning journey today
+							</p>
+						</Link>
+
+						<Link
+							href="/become-a-tutor"
+							className="group relative flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50 px-4 py-2 rounded-2xl border border-blue-100 shadow-md hover:shadow-lg transition-all duration-300 w-56"
+						>
+							<div className="mb-2 flex items-center justify-center w-12 h-12 rounded-full bg-blue-200/30 group-hover:scale-110 transition-transform">
+								<UserPlus className="h-6 w-6 text-blue-600" />
+							</div>
+							<h3 className="text-lg font-semibold text-primary mb-1 text-center">
+								Become a Tutor
+							</h3>
+							<p className="text-xs text-muted-foreground text-center">
+								Share your knowledge and help students grow
+							</p>
+						</Link>
+					</div>
+				</div>
+			</section>
 		</main>
-	);
+	)
 }
