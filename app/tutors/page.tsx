@@ -15,7 +15,9 @@ export default function TutorsPage() {
             <div className="w-full mt-2">
                 <div className="w-full flex justify-center">
                     <iframe
-                        src="https://airtable.com/embed/app3o2f0OSKx9zDcI/shrOAYeDF0HYNzC01"
+                        className="airtable-embed"
+                        src="https://airtable.com/embed/app3o2f0OSKx9zDcI/shrE8NOMn3QDWfSmd"
+                        frameBorder="0"
                         style={{
                             background: 'transparent',
                             border: '1px solid #ccc',
@@ -24,7 +26,7 @@ export default function TutorsPage() {
                             height: '1200px',
                         }}
                         title="Tutor Profiles"
-                    ></iframe>
+                    />
                 </div>
             </div>
         </main>
