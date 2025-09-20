@@ -14,7 +14,7 @@ const BecomeAStudent = () => {
                 </div>
                 <div className="w-full">
                     <iframe
-                        src="https://docs.google.com/forms/d/1Saz2oo3KHiljsECDdpTyRuRukxSbjhb_BH2cWcYjA4A/viewform?embedded=true"
+                        src="https://docs.google.com/forms/d/e/1FAIpQLSeeLZZ651rGqWFQf9VGijna7I489WdTamWDdpuTAymQQvqqrg/viewform?usp=dialog"
                         width="100%"
                         height="900"
                         className="border-0 w-full rounded-xl"
