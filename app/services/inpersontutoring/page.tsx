@@ -98,17 +98,11 @@ export default function InPersonTutoringPage() {
         <div ref={heroRightRef} className="w-full lg:w-1/2 flex flex-col gap-6">
           {/* Locations */}
           <div ref={locationsRef} className="space-y-6">
-            <h2 className="text-3xl font-semibold text-center text-primary">Our Locations</h2>
-            <div className="grid md:grid-cols-2 gap-2">
-              <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl border border-purple-100 p-6 shadow-sm">
-                <h3 className="font-semibold text-primary mb-2">Main Learning Center</h3>
-                <p className="text-muted-foreground mb-2">123 Education Ave, City Name</p>
-                <p className="text-muted-foreground">Sat: 2pm-5pm</p>
-              </div>
-              <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl border border-purple-100 p-6 shadow-sm">
-                <h3 className="font-semibold text-primary mb-2">Community Center Location</h3>
-                <p className="text-muted-foreground mb-2">456 Learning Blvd, City Name</p>
-                <p className="text-muted-foreground">Sat: 2pm-5pm</p>
+            <div className="grid md:grid-cols-1">
+              <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl border border-purple-100 p-6 shadow-sm text-center">
+                <h3 className="font-semibold text-primary mb-2 text-lg">Assumption Catholic Church</h3>
+                <p className="text-muted-foreground mb-2">2403 Atlantic Boulevard, Jacksonville, FL</p>
+                <p className="text-muted-foreground">Saturday: 10:00 am - 12:30 pm</p>
               </div>
             </div>
           </div>

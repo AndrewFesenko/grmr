@@ -16,7 +16,7 @@ export default function TutorsPage() {
                 <div className="w-full flex justify-center">
                     <iframe
                         className="airtable-embed"
-                        src="https://airtable.com/embed/app3o2f0OSKx9zDcI/shrE8NOMn3QDWfSmd"
+                        src="https://airtable.com/embed/app3o2f0OSKx9zDcI/shrJV0QOMXLMgm22k?viewControls=on"
                         frameBorder="0"
                         style={{
                             background: 'transparent',
@@ -32,3 +32,4 @@ export default function TutorsPage() {
         </main>
     )
 }
+

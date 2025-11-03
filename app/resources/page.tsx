@@ -80,7 +80,7 @@ function ResourcesContent() {
 	}
 
 	return (
-		<div className="min-h-[100svh] w-full bg-gradient-to-b from-[#faf5ff] via-[#f3e8ff]/30 to-[#faf5ff] py-20 px-4 pb-28">
+		<div className="min-h-[100svh] w-full py-20 px-4 pb-28">
 			{/* Hero */}
 			<section
 				ref={heroRef}
@@ -132,8 +132,22 @@ function ResourcesContent() {
 					ref={panelRef}
 					className="max-w-6xl mx-auto bg-white/70 backdrop-blur-sm rounded-3xl p-0 shadow-lg"
 				>
-					{activeFilter === 'diagnostic' && <DiagnosticPanel />}
+
+					{activeFilter === 'diagnostic' && (
+						<div className="flex flex-col items-center justify-center py-24 px-6 text-center">
+							<h2 className="text-3xl font-bold text-primary mb-4">Diagnostic Tests</h2>
+							<p className="text-gray-700 text-lg mb-6 max-w-xl">
+								We're hard at work developing personalized diagnostic tools to help identify learning strengths and areas for growth. 
+								Check back soon!
+							</p>
+							<span className="inline-flex items-center gap-2 bg-[#f3e8ff] text-[#86198f] font-semibold px-5 py-2.5 rounded-full border border-[#d8b4fe] shadow-sm">
+								🚧 Coming Soon
+							</span>
+						</div>
+					)}
+
 					{activeFilter === 'accessibility' && <AccessibilityPanel />}
+					
 					{activeFilter === 'templates' && <TemplatesPanel />}
 				</section>
 			)}

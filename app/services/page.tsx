@@ -64,6 +64,18 @@ export default function ServicesPage() {
 					</div>
 				</div>
 			</div>
+
+			{/* extra space*/}
+			<section className="text-center">
+				<div className="bg-gradient-to-br from-purple-200 to-blue-200 rounded-3xl border border-blue-100 p-10 max-w-5xl mx-auto shadow-md">
+					<h2 className="text-3xl font-bold text-primary mb-3">Keep Learning Anytime, Anywhere</h2>
+					<p className="text-gray-700 mb-6 max-w-2xl mx-auto">
+						Learn at your own pace, anytime. Access our collection of lessons and video walkthroughs in math, science, and English created by our dedicated tutors—perfect for reviewing past topics or getting ahead on new ones.					</p>
+					<Link href="/lessons" className="inline-block px-6 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-purple-500 to-blue-500 shadow-md hover:shadow-lg hover:scale-105 transform transition-all duration-300">
+						Start Exploring
+					</Link>
+				</div>
+			</section>
 		</main>
 	)
 }
